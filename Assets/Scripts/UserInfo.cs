@@ -29,7 +29,7 @@ public sealed class UserData
     {
         Gold += value;
 
-        ValueChanged?.Invoke(value);
+        ValueChanged?.Invoke(Gold);
     }
 
     public bool TryDecreaseValue(int value) 
@@ -39,7 +39,7 @@ public sealed class UserData
 
         Gold -= value;
 
-        ValueChanged?.Invoke(value);
+        ValueChanged?.Invoke(Gold);
 
         return true;
     }
