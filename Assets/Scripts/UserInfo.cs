@@ -60,7 +60,7 @@ public sealed class UserProgress
 
     public sealed class LevelProgress
     {
-        public int Level { get; private set; }
+        public string Id { get; private set; }
         public bool IsPassed { get; private set; }
         public int CountStars { get; private set; }
     }
