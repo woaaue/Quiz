@@ -1,13 +1,16 @@
 using System;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public sealed class UserInfo : IInitializable
 {
     public UserData UserData { get; private set; }
+    public UserProgress UserProgress { get; private set; }
 
     public void Initialize()
     {
         UserData = new UserData();
+        UserProgress = new UserProgress();
 
         // TODO: load saves
     }
@@ -48,7 +51,12 @@ public sealed class UserData
 [Serializable]
 public sealed class UserProgress
 {
+    public Dictionary<ThemeType, List<LevelProgress>> LevelsProgress { get; private set; }
 
+    public UserProgress()
+    {
+        LevelsProgress = new Dictionary<ThemeType, List<LevelProgress>>();
+    }
 
     public sealed class LevelProgress
     {
