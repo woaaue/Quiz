@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70cdf43c48233d4ca9de38a9768bb6d, type: 3}
+  m_Name: LevelsSettings
+  m_EditorClassIdentifier: 
+  <LevelsSetting>k__BackingField:
+  - {fileID: 11400000, guid: 7db08d75017303e43a6b0b811ff27b0a, type: 2}
+  - {fileID: 11400000, guid: 6a49c310755528c42936a7a106e874fd, type: 2}
+  - {fileID: 11400000, guid: ff0c8e1fb082cc642a41944b8052604a, type: 2}
+  - {fileID: 11400000, guid: 0603c192492963941b2e40da3b21b7bb, type: 2}
+  - {fileID: 11400000, guid: 90b8591aab0aa194391c4c1d21989bd0, type: 2}
