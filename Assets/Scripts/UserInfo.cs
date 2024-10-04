@@ -1,16 +1,19 @@
 using System;
+using UnityEngine;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public sealed class UserInfo : IInitializable
 {
-    public UserData UserData { get; private set; }
-    public UserProgress UserProgress { get; private set; }
+    [field: SerializeField] public UserData UserData { get; private set; }
+    [field: SerializeField] public UserProgress UserProgress { get; private set; }
+    [field: SerializeField] public LanguageSettings LanguageSettings { get; private set; }
 
     public void Initialize()
     {
         UserData = new UserData();
         UserProgress = new UserProgress();
+        LanguageSettings = new LanguageSettings();
 
         // TODO: load saves
     }
@@ -21,7 +24,7 @@ public sealed class UserData
 {
     public event Action<int> ValueChanged;
 
-    public int Gold { get; private set; }
+    [field: SerializeField] public int Gold { get; private set; }
 
     public UserData()
     {
@@ -51,7 +54,7 @@ public sealed class UserData
 [Serializable]
 public sealed class UserProgress
 {
-    public Dictionary<ThemeType, List<LevelProgress>> LevelsProgress { get; private set; }
+    [field: SerializeField] public Dictionary<ThemeType, List<LevelProgress>> LevelsProgress { get; private set; }
 
     public UserProgress()
     {
@@ -60,8 +63,19 @@ public sealed class UserProgress
 
     public sealed class LevelProgress
     {
-        public string Id { get; private set; }
-        public bool IsPassed { get; private set; }
-        public int CountStars { get; private set; }
+        public string Id;
+        public bool IsPassed => CountStars > 0;
+        public int CountStars;
+    }
+}
+
+[Serializable]
+public sealed class LanguageSettings
+{
+    [field: SerializeField] public LanguageType SaveLanguage { get; private set; }
+
+    public LanguageSettings() 
+    {
+        SaveLanguage = LanguageType.Ru;
     }
 }
