@@ -10,7 +10,7 @@ public sealed class ThemeSettings : ScriptableObject
 #if UNITY_EDITOR
 
     [Button("FillLevelsQustions")]
-    private void FillQuestions()
+    public void FillQuestions()
     {
         Levels.LevelsSetting.ForEach(levelSetting =>
         {

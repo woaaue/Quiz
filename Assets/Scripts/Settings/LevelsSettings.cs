@@ -10,7 +10,7 @@ public sealed class LevelsSettings : ScriptableObject
 #if UNITY_EDITOR
 
     [Button("Generate identifiers for levels")]
-    private void GenerateId()
+    public void GenerateId()
     {
         LevelsSetting.ForEach(levelSetting =>
         {
