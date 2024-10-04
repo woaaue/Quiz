@@ -29,18 +29,13 @@ public sealed class LevelSettings : ScriptableObject
 
         for (var i = 0; i < COUNT_QUESTIONS; i++)
         {
-            var counter = 0;
-
-            if (Number == 1)
-                counter = 1;
-            else
-                counter = --Number * COUNT_QUESTIONS;
+            var counter = (Number - 1) * COUNT_QUESTIONS + (i + 1);
 
             QuestionSettings.Add(
                     new QuestionSettings
                     {
                         Type = type,
-                        Number = counter + i
+                        Number = counter
                     });
         }
 
