@@ -5,35 +5,23 @@ using System.Collections.Generic;
 
 public sealed class GameSaver : MonoBehaviour
 {
-    [SerializeField] private List<OperationPack> _packs;
+    [SerializeField] private List<Operation> _operations;
 
-    private void OnApplicationPause(bool pauseStatus)
+    private void OnApplicationFocus(bool isFocus)
     {
-        if (pauseStatus)
+        if (!isFocus)
         {
-            StartCoroutine(SaveGameRoutine());
-        }
-        else
-        {
-            StopCoroutine(SaveGameRoutine());
+            SaveGame();
         }
     }
 
-    private IEnumerator SaveGameRoutine()
+    private void SaveGame()
     {
-        if (_packs == null || !_packs.Any())
+        _operations.ForEach(operation =>
         {
-            yield break;
-        }
-
-        foreach (var pack in _packs) 
-        {
-            pack.Begin();
-
-            while (!pack.IsDone)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-        }
+            operation.Begin();
+        });
     }
+
+    //TO DO: add asynchronous saves in the future if needed
 }
