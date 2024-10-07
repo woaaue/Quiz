@@ -12,10 +12,8 @@ public sealed class UserInfoSavingOperation : Operation
     {
         _dataSave = new DataSave();
 
-        _dataSave.Save(_userInfo).ContinueWith(_ =>
-        {
-            _progress = 1f;
-            SetStateDone();
-        });
+        _dataSave.Save(_userInfo);
+        _progress = 1f;
+        SetStateDone();
     }
 }
