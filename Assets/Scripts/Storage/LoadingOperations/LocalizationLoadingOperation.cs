@@ -1,12 +1,17 @@
-public sealed class LocalizationLoadingOperation : LoadingOperation
+using Zenject;
+
+public sealed class LocalizationLoadingOperation : Operation
 {
+    private const string PATH = "Localization";
+
     public override float Progress => _progress;
 
     private float _progress;
-    private const string PATH = "Localization";
+    [Inject] private readonly UserInfo _userInfo;
 
     protected override void OnBegin()
     {
+        LocalizationProvider.SetLanguage(_userInfo.LanguageSettings.SaveLanguage);
         LocalizationProvider.InitializeAsync(PATH).ContinueWith(_ =>
         {
             _progress = 1f;

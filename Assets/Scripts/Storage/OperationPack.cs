@@ -3,12 +3,12 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-public sealed class LoadingOperationPack : LoadingOperation
+public sealed class OperationPack : Operation
 {
     public override float Progress => _progress;
 
     [SerializeField] private ExecutionMethod _executionMethod;
-    [SerializeField] private List<LoadingOperation> _operations;
+    [SerializeField] private List<Operation> _operations;
 
     private float _progress;
 

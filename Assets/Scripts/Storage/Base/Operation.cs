@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class LoadingOperation : MonoBehaviour
+public abstract class Operation : MonoBehaviour
 {
     public abstract float Progress { get; }
     public bool IsDone { get; private set; }
