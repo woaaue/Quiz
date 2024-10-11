@@ -33,21 +33,12 @@ public static class LocalizationProvider
     }
 
     public static string GetText(LocalizationItemType itemType, string key) => GetLocalizedTextByKey(_currentLanguage, itemType, key);
-    public static string GetText(LocalizationItemType itemType, params string[] tags) => GetLocalizedTextByTags(_currentLanguage, itemType, tags);
 
     private static string GetLocalizedTextByKey(LanguageType language, LocalizationItemType itemType, string key)
     {
         var localizationGroup = _localizationData[language];
 
         return localizationGroup[itemType].FirstOrDefault(item => item.Key == key).Text;
-    }
-
-    private static string GetLocalizedTextByTags(LanguageType language, LocalizationItemType itemType, params string[] tags)
-    {
-        var localizationGroup = _localizationData[language];
-
-        return localizationGroup[itemType].FirstOrDefault(item => item.Tags != null
-        && tags.All(tag => item.Tags.Contains(tag))).Text;
     }
 
     private static async Task LoadLocalizationAsync(string path)
