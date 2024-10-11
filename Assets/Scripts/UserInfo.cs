@@ -54,18 +54,18 @@ public sealed class UserData
 [Serializable]
 public sealed class UserProgress
 {
-    [field: SerializeField] public Dictionary<ThemeType, List<LevelProgress>> LevelsProgress { get; private set; }
+    [field: SerializeField] public List<LevelProgress> Progresses { get; private set; }
 
     public UserProgress()
     {
-        LevelsProgress = new Dictionary<ThemeType, List<LevelProgress>>();
+        Progresses = new List<LevelProgress>();
     }
 
     public sealed class LevelProgress
     {
         public string Id;
-        public bool IsPassed => CountStars > 0;
         public int CountStars;
+        public bool IsPassed => CountStars > 0;
     }
 }
 
