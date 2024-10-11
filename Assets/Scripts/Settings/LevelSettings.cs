@@ -6,15 +6,16 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Quiz/LevelSettings", fileName = "LevelSettings", order = 1)]
 public sealed class LevelSettings : ScriptableObject
 {
+    private const int COUNT_ANSWERS = 4;
     private const int COUNT_QUESTIONS = 5;
 
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] public int Number { get; private set; }
-    [field: SerializeField] public List<QuestionSettings> QuestionSettings { get; private set; }
+    [field: SerializeField] public List<QuestionSettings> QuestionsSettings { get; private set; }
 
 #if UNITY_EDITOR
 
-    public void SetId()
+    public void SetLevelId()
     {
         Id = Guid.NewGuid().ToString();
 
@@ -23,25 +24,31 @@ public sealed class LevelSettings : ScriptableObject
         AssetDatabase.Refresh();
     }
 
-    public void SetQuestionSettings(ThemeType type)
+    public void SetQuestion(QuestionSettings question)
     {
-        QuestionSettings = new List<QuestionSettings>();
-
-        for (var i = 0; i < COUNT_QUESTIONS; i++)
+        if (QuestionsSettings.Count == COUNT_QUESTIONS)
         {
-            var counter = (Number - 1) * COUNT_QUESTIONS + (i + 1);
-
-            QuestionSettings.Add(
-                    new QuestionSettings
-                    {
-                        Type = type,
-                        Number = counter
-                    });
+            throw new Exception("Maximum number of questions exceeded");
         }
+
+        CheckQuestion(question);
+
+        QuestionsSettings.Add(question);
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+    }
+
+    private void CheckQuestion(QuestionSettings question)
+    {
+        foreach (var questionSetting in QuestionsSettings)
+        {
+            if (questionSetting.Id == question.Id)
+            {
+                throw new Exception($"The question ({question.Id}) with the given id already exists");
+            }
+        }
     }
 
 #endif
@@ -50,6 +57,19 @@ public sealed class LevelSettings : ScriptableObject
 [Serializable]
 public sealed class QuestionSettings
 {
-    public int Number;
-    public ThemeType Type;
+    public string Id;
+    public List<AnswerSettings> AnswersSettings;
+
+    public QuestionSettings(string id)
+    {
+        Id = id;
+        AnswersSettings = new List<AnswerSettings>();
+    }
+}
+
+[Serializable]
+public sealed class AnswerSettings
+{
+    public string Id;
+    public bool isCorrect;
 }

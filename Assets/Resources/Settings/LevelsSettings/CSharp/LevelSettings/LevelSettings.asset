@@ -14,14 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: a6a619da-f158-4e71-804f-ead8c43f6bd2
   <Number>k__BackingField: 1
-  <QuestionSettings>k__BackingField:
-  - Number: 1
-    Type: 2
-  - Number: 2
-    Type: 2
-  - Number: 3
-    Type: 2
-  - Number: 4
-    Type: 2
-  - Number: 5
-    Type: 2
+  <QuestionsSettings>k__BackingField: []

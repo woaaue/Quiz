@@ -16,7 +16,7 @@ public sealed class LevelsSettings : ScriptableObject
         {
             if (string.IsNullOrEmpty(levelSetting.Id))
             {
-                levelSetting.SetId();
+                levelSetting.SetLevelId();
             }
         });
     }
