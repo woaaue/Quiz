@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(menuName = "Quiz/LevelSettings", fileName = "LevelSettings", order = 1)]
 public sealed class LevelSettings : ScriptableObject
@@ -18,6 +19,37 @@ public sealed class LevelSettings : ScriptableObject
     public void SetLevelId()
     {
         Id = Guid.NewGuid().ToString();
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    public void SetAnswer(AnswerParameters parameters)
+    {
+        if (QuestionsSettings.Count < parameters.NumberQuestion)
+        {
+            throw new Exception($"Question number: {parameters.NumberQuestion + 1} does not exist");
+        }
+
+        if (QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Count == COUNT_ANSWERS)
+        {
+            throw new Exception($"The maximum possible number of answers for a question {parameters.NumberQuestion + 1} has been exceeded");
+        }
+
+        if (QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Count == 3)
+        {
+            if (!QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Any(answerSettings => answerSettings.IsCorrect))
+            {
+                throw new Exception($"There are no correct answers to the question numbered: {parameters.NumberQuestion + 1}");
+            }
+        }
+
+        QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Add(new AnswerSettings
+        {
+            Id = parameters.Id,
+            IsCorrect = parameters.IsCorrect,
+        });
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
@@ -71,5 +103,5 @@ public sealed class QuestionSettings
 public sealed class AnswerSettings
 {
     public string Id;
-    public bool isCorrect;
+    public bool IsCorrect;
 }
