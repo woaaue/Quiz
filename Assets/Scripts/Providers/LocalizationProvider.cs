@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 
 public static class LocalizationProvider
 {
@@ -29,7 +30,7 @@ public static class LocalizationProvider
 
     public static async Task InitializeAsync(string path)
     {
-       await LoadLocalizationAsync(path);
+        await LoadLocalizationAsync(path);
     }
 
     public static string GetText(LocalizationItemType itemType, string key) => GetLocalizedTextByKey(_currentLanguage, itemType, key);
@@ -74,20 +75,11 @@ public static class LocalizationProvider
         }
     }
 
-    private static async Task<List<LocalizationItem>> LoadItemsAsync(string folderPath)
+    private static async Task<List<LocalizationItem>> LoadItemsAsync(string itemPath)
     {
-        var items = new List<LocalizationItem>();
+        var jsonContent = await File.ReadAllTextAsync(itemPath);
+        var localizationItems = JsonConvert.DeserializeObject<List<LocalizationItem>>(jsonContent);
 
-        string[] jsonFiles = Directory.GetFiles(folderPath, "*.json");
-
-        foreach (var jsonFile in jsonFiles)
-        {
-            var jsonContent = await File.ReadAllTextAsync(jsonFile);
-            LocalizationItem item = JsonUtility.FromJson<LocalizationItem>(jsonContent);
-
-            items.Add(item);
-        }
-
-        return items;
+        return localizationItems;
     }
 }

@@ -1,6 +1,6 @@
 using System.IO;
-using UnityEngine;
 using System.Threading.Tasks;
+using Unity.Plastic.Newtonsoft.Json;
 
 public sealed class DataLoad : DataBase
 {
@@ -15,6 +15,6 @@ public sealed class DataLoad : DataBase
 
         var json = await File.ReadAllTextAsync(path);
         
-        return JsonUtility.FromJson<T>(json);
+        return JsonConvert.DeserializeObject<T>(json);
     }
 }
