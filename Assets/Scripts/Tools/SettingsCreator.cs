@@ -9,6 +9,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Quiz/SettingsCreator", fileName = "SettingsCreator", order = 1)]
 public sealed class SettingsCreator : ScriptableObject
 {
+    private const string EXTENSION = ".json";
     private const string PATH = "Localization";
 
     [SerializeField] private CreateSetting _createSetting;
@@ -109,7 +110,7 @@ public sealed class SettingsCreator : ScriptableObject
         foreach (KeyValuePair<LanguageType, List<LocalizationItem>> kvp in dataItems)
         {
             var jsonData = JsonConvert.SerializeObject(kvp.Value);
-            var path = Path.Combine(Application.streamingAssetsPath, PATH, kvp.Key.ToString(), _createSetting.Type.ToString());
+            var path = Path.Combine(Application.streamingAssetsPath, PATH, kvp.Key.ToString(), _createSetting.Type.ToString() + ".json");
 
             File.WriteAllText(path, jsonData);
         }
@@ -131,7 +132,7 @@ public sealed class SettingsCreator : ScriptableObject
                         return true;
                     }
 
-                    var path = Path.Combine(Application.streamingAssetsPath, PATH, languageSettings.LanguageType.ToString(), _createSetting.Type.ToString());
+                    var path = Path.Combine(Application.streamingAssetsPath, PATH, languageSettings.LanguageType.ToString(), _createSetting.Type.ToString() + EXTENSION);
 
                     throw new Exception($"This text is already located at path: {path} and its id: {item.Key}");
                 }    
@@ -157,7 +158,7 @@ public sealed class SettingsCreator : ScriptableObject
             {
                 if (itemType == _createSetting.Type)
                 {
-                    var filePath = Path.Combine(languagePath, $"{itemType}.json");
+                    var filePath = Path.Combine(languagePath, $"{itemType}{EXTENSION}");
                     var jsonData = File.ReadAllText(filePath);
                     localizationItems = JsonConvert.DeserializeObject<List<LocalizationItem>>(jsonData);
                 }
