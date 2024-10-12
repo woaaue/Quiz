@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using UnityEngine;
 using System.Linq;
+using Newtonsoft.Json;
 using NaughtyAttributes;
 using System.Collections.Generic;
-using Unity.Plastic.Newtonsoft.Json;
 
 [CreateAssetMenu(menuName = "Quiz/SettingsCreator", fileName = "SettingsCreator", order = 1)]
 public sealed class SettingsCreator : ScriptableObject

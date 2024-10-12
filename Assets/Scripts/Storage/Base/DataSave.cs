@@ -1,6 +1,6 @@
 using System.IO;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Unity.Plastic.Newtonsoft.Json;
 
 public sealed class DataSave : DataBase
 {

@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Unity.Plastic.Newtonsoft.Json;
 
 public static class LocalizationProvider
 {
