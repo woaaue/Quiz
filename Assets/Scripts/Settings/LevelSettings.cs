@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Quiz/LevelSettings", fileName = "LevelSettings", order = 1)]
 public sealed class LevelSettings : ScriptableObject
@@ -39,10 +39,20 @@ public sealed class LevelSettings : ScriptableObject
 
         if (QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Count == 3)
         {
-            if (!QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Any(answerSettings => answerSettings.IsCorrect))
+            if (!QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Any(answerSettings => answerSettings.IsCorrect) && !parameters.IsCorrect)
             {
                 throw new Exception($"There are no correct answers to the question numbered: {parameters.NumberQuestion + 1}");
             }
+        }
+
+        if (parameters.IsCorrect && QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Any(answerSettings => answerSettings.IsCorrect))
+        {
+            throw new Exception($"The question: {parameters.NumberQuestion + 1} already has the correct answer");
+        }
+
+        if (QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Any(answerSettings => answerSettings.Id == parameters.Id))
+        {
+            throw new Exception($"In the question: {parameters.NumberQuestion + 1} there is already such an answer with id: {parameters.Id}");
         }
 
         QuestionsSettings.ElementAt(parameters.NumberQuestion).AnswersSettings.Add(new AnswerSettings
@@ -63,24 +73,16 @@ public sealed class LevelSettings : ScriptableObject
             throw new Exception("Maximum number of questions exceeded");
         }
 
-        CheckQuestion(question);
+        if (QuestionsSettings.Any(questionSettings => questionSettings.Id == question.Id))
+        {
+            throw new Exception($"The question ({question.Id}) with the given id already exists at this level");
+        }
 
         QuestionsSettings.Add(question);
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-    }
-
-    private void CheckQuestion(QuestionSettings question)
-    {
-        foreach (var questionSetting in QuestionsSettings)
-        {
-            if (questionSetting.Id == question.Id)
-            {
-                throw new Exception($"The question ({question.Id}) with the given id already exists");
-            }
-        }
     }
 
 #endif

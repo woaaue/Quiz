@@ -13,16 +13,10 @@ MonoBehaviour:
   m_Name: SettingsCreator
   m_EditorClassIdentifier: 
   _createSetting:
-    Type: 0
-    Theme: 0
+    Type: 1
+    Theme: 2
     Level: 0
     IsCorrect: 0
     NumberForQuestion: 0
-    LanguageSettings:
-    - LanguageType: 0
-      Text: "\u041C\u0435\u043D\u044E"
-    - LanguageType: 1
-      Text: Menu
-    - LanguageType: 2
-      Text: "Men\xFC"
+    LanguageSettings: []
   _themesSettings: {fileID: 11400000, guid: 62bf116e3a1a8ca4ab4f1aab7dc2f609, type: 2}
