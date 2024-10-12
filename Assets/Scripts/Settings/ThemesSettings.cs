@@ -9,12 +9,12 @@ public sealed class ThemesSettings : ScriptableObject
 
 #if UNITY_EDITOR
 
-    [Button("Generate ID levels")]
+    [Button("Fill default level settings")]
     private void GenerateData()
     {
         ThemeSettings.ForEach(themeSettings =>
         {
-            themeSettings.Levels.GenerateId();
+            themeSettings.Levels.FillSettings();
         });
     }
 

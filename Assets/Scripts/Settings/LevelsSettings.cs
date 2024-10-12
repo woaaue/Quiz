@@ -1,5 +1,4 @@
 using UnityEngine;
-using NaughtyAttributes;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Quiz/LevelsSettings", fileName = "LevelsSettings", order = 1)]
@@ -9,14 +8,15 @@ public sealed class LevelsSettings : ScriptableObject
 
 #if UNITY_EDITOR
 
-    [Button("Generate identifiers for levels")]
-    public void GenerateId()
+    public void FillSettings()
     {
+        var counter = 0;
+
         LevelsSetting.ForEach(levelSetting =>
         {
             if (string.IsNullOrEmpty(levelSetting.Id))
             {
-                levelSetting.SetLevelId();
+                levelSetting.SetIdAndNumber(++counter);
             }
         });
     }

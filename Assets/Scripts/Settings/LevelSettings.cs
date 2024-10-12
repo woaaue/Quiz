@@ -16,8 +16,9 @@ public sealed class LevelSettings : ScriptableObject
 
 #if UNITY_EDITOR
 
-    public void SetLevelId()
+    public void SetIdAndNumber(int numberLevel)
     {
+        Number = numberLevel;
         Id = Guid.NewGuid().ToString();
 
         EditorUtility.SetDirty(this);
