@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 
 [CreateAssetMenu(menuName = "Quiz/SettingsCreator", fileName = "SettingsCreator", order = 1)]
 public sealed class SettingsCreator : ScriptableObject
@@ -53,12 +54,42 @@ public sealed class SettingsCreator : ScriptableObject
 
     private void CreateAnswer()
     {
+        var dataItems = GetLocalizationFile();
+        var themeSettings = _themesSettings.ThemeSettings.First(themeSetting => themeSetting.Type == _createSetting.Theme);
+        var level = themeSettings.Levels.LevelsSetting.First(levelSettings => levelSettings.Number == _createSetting.Level);
 
+        if (CheckMacth(dataItems, out var dataId))
+        {
+            level.SetAnswer(new AnswerParameters
+            {
+                Id = dataId,
+                IsCorrect = _createSetting.IsCorrect,
+                NumberQuestion = _createSetting.NumberForQuestion - 1
+            });
+        }
+        else
+        {
+            level.SetAnswer(new AnswerParameters
+            {
+                Id = _createSetting.Id,
+                IsCorrect = _createSetting.IsCorrect,
+                NumberQuestion = _createSetting.NumberForQuestion - 1
+            });
+
+            AddItem(dataItems);
+            SaveLocalizationFile(dataItems);
+        }
     }
 
     private void CreateUI()
     {
+        var dataItems = GetLocalizationFile();
 
+        if (!CheckMacth(dataItems, out var dataId))
+        {
+            AddItem(dataItems);
+            SaveLocalizationFile(dataItems);
+        }
     }
 
     private void AddItem(Dictionary<LanguageType, List<LocalizationItem>> dataItems)
@@ -77,7 +108,7 @@ public sealed class SettingsCreator : ScriptableObject
     {
         foreach (KeyValuePair<LanguageType, List<LocalizationItem>> kvp in dataItems)
         {
-            var jsonData = JsonUtility.ToJson(kvp.Value);
+            var jsonData = JsonConvert.SerializeObject(kvp.Value);
             var path = Path.Combine(Application.streamingAssetsPath, PATH, kvp.Key.ToString(), _createSetting.Type.ToString());
 
             File.WriteAllText(path, jsonData);
@@ -128,7 +159,7 @@ public sealed class SettingsCreator : ScriptableObject
                 {
                     var filePath = Path.Combine(languagePath, $"{itemType}.json");
                     var jsonData = File.ReadAllText(filePath);
-                    localizationItems = JsonUtility.FromJson<List<LocalizationItem>>(jsonData);
+                    localizationItems = JsonConvert.DeserializeObject<List<LocalizationItem>>(jsonData);
                 }
             }
 
@@ -150,6 +181,7 @@ public sealed class CreateSetting
     public LocalizationItemType Type;
     public ThemeType Theme;
     public int Level;
+    public bool IsCorrect;
     public int NumberForQuestion;
     public List<LanguageSetting> LanguageSettings;
 
@@ -157,6 +189,14 @@ public sealed class CreateSetting
     {
         Id = Guid.NewGuid().ToString();
     }
+}
+
+[Serializable]
+public sealed class AnswerParameters
+{
+    public string Id;
+    public bool IsCorrect;
+    public int NumberQuestion;
 }
 
 [Serializable]
