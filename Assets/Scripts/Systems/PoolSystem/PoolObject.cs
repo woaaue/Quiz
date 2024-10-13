@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
 public sealed class PoolObject<T> where T : MonoBehaviour
-{
-    public List<T> _pool { get; private set; }
-    
+{   
     private T _prefab;
+    private List<T> _pool;
     private bool _isAutoExpand;
     private Transform _container;
 
