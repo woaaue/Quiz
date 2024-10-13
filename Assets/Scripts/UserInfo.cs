@@ -1,6 +1,6 @@
 using System;
+using Zenject;
 using UnityEngine;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public sealed class UserInfo : IInitializable
