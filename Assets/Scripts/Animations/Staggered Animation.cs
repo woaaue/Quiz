@@ -25,6 +25,11 @@ public sealed class StaggeredAnimation : MonoBehaviour
         StartCoroutine(StaggeredAnimationRoutine());
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator StaggeredAnimationRoutine()
     {
         while (true)
