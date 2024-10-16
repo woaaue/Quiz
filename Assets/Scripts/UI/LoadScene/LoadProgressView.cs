@@ -1,23 +1,27 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public sealed class LoadProgressView : MonoBehaviour
 {
-    [SerializeField] private GameLoader _loader;
-    [SerializeField] private TextMeshProUGUI _progress;
+    private const string TEMPLATE = "{0} %";
+
+    [SerializeField] private Image _progressBar;
+    [SerializeField] private TextMeshProUGUI _value;
 
     private void Start()
     {
-        _loader.ProgressChanged += OnProgressChanged;
+        EventSystem.Subscribe<ProgressLoadSignal>(OnProgressChanged);   
     }
 
     private void OnDestroy()
     {
-        _loader.ProgressChanged -= OnProgressChanged;
+        EventSystem.Unsubscribe<ProgressLoadSignal>(OnProgressChanged);
     }
 
-    private void OnProgressChanged(float value)
+    private void OnProgressChanged(ProgressLoadSignal signal)
     {
-        _progress.text = value.ToString();
+        _progressBar.fillAmount = signal.Progress / 1f;
+        _value.text = string.Format(TEMPLATE, signal.Progress * 100);
     }
 }
