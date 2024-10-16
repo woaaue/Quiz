@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections;
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -9,17 +10,21 @@ public sealed class GameLoader : MonoBehaviour
 {
     [SerializeField] private List<OperationPack> _packs;
 
-    public event Action<float> ProgressChanged;
+    [UsedImplicitly]
+    public void LoadGame()
+    {
+        StartCoroutine(LoadGameRoutine());
+    }
 
     private void Awake()
     {
+
 #if UNITY_EDITOR
 
         Application.targetFrameRate = 60;
 
 #endif
 
-        StartCoroutine(LoadGameRoutine());
     }
 
     private void OnDestroy()
@@ -38,15 +43,17 @@ public sealed class GameLoader : MonoBehaviour
         {
             pack.Begin();
 
+            yield return null;
+
             while (!pack.IsDone)
             {
                 yield return new WaitForEndOfFrame();
             }
 
-            ProgressChanged?.Invoke(CheckCurrentProgress());
+            EventSystem.Invoke(new ProgressLoadSignal(CheckCurrentProgress()));
         }
 
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single); //TO DO: edit this, cringe
+        SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Single); //TO DO: edit this, cringe
     }
 
     private float CheckCurrentProgress()

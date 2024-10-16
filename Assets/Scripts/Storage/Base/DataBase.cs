@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-public abstract class DataBase : MonoBehaviour
+public abstract class DataBase
 { 
     protected string GetPath<T>() where T : class
     {

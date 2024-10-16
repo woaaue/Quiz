@@ -55,7 +55,7 @@ public sealed class OperationPack : Operation
 
             while (!operation.IsDone)
             {
-                _progress = (operation.Progress + completedOperationsCount) /operationCount;
+                _progress = (operation.Progress + completedOperationsCount) / operationCount;
                 yield return new WaitForEndOfFrame();
             }
 
@@ -63,6 +63,7 @@ public sealed class OperationPack : Operation
         }
 
         _progress = 1f;
+        SetStateDone();
 
         yield break;
     }
