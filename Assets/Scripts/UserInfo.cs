@@ -1,21 +1,18 @@
 using System;
-using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
 
-public sealed class UserInfo : IInitializable
+public sealed class UserInfo
 {
     [field: SerializeField] public UserData UserData { get; private set; }
     [field: SerializeField] public UserProgress UserProgress { get; private set; }
     [field: SerializeField] public LanguageSettings LanguageSettings { get; private set; }
 
-    public void Initialize()
+    public UserInfo() 
     {
         UserData = new UserData();
         UserProgress = new UserProgress();
         LanguageSettings = new LanguageSettings();
-
-        // TODO: load saves
     }
 }
 
