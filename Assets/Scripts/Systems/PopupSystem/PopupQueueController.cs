@@ -31,11 +31,11 @@ public sealed class PopupQueueController : MonoBehaviour
 
         var instance = Instantiate(_queuePopups.Peek(), _container, false);
 
-        EventSystem.Subscribe<HidePopupSignal>(HidePopup);
+        EventSystem.Subscribe<HidePopupEvent>(HidePopup);
 
     }
 
-    private void HidePopup(HidePopupSignal signal)
+    private void HidePopup(HidePopupEvent popupEvent)
     {
         _queuePopups.Dequeue();
 

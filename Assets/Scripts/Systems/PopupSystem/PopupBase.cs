@@ -15,7 +15,7 @@ public class PopupBase : MonoBehaviour
 
     private void Destroy()
     {
-        EventSystem.Invoke(new HidePopupSignal(isActiveBackground));
+        EventSystem.Invoke(new HidePopupEvent (isActiveBackground));
         Destroy(gameObject);
     }
 }

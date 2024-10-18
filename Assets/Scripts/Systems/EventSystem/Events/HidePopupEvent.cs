@@ -1,8 +1,8 @@
-public sealed class HidePopupSignal
+public sealed class HidePopupEvent
 {
     public readonly bool IsActive;
 
-    public HidePopupSignal(bool isActive) 
+    public HidePopupEvent(bool isActive) 
     {
         IsActive = isActive;
     }

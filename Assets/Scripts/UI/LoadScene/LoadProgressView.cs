@@ -11,17 +11,17 @@ public sealed class LoadProgressView : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.Subscribe<ProgressLoadSignal>(OnProgressChanged);   
+        EventSystem.Subscribe<ProgressLoadEvent>(OnProgressChanged);   
     }
 
     private void OnDestroy()
     {
-        EventSystem.Unsubscribe<ProgressLoadSignal>(OnProgressChanged);
+        EventSystem.Unsubscribe<ProgressLoadEvent>(OnProgressChanged);
     }
 
-    private void OnProgressChanged(ProgressLoadSignal signal)
+    private void OnProgressChanged(ProgressLoadEvent loadEvent)
     {
-        _progressBar.fillAmount = signal.Progress / 1f;
-        _value.text = string.Format(TEMPLATE, signal.Progress * 100);
+        _progressBar.fillAmount = loadEvent.Progress / 1f;
+        _value.text = string.Format(TEMPLATE, loadEvent.Progress * 100);
     }
 }

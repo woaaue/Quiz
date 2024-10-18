@@ -50,7 +50,7 @@ public sealed class GameLoader : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            EventSystem.Invoke(new ProgressLoadSignal(CheckCurrentProgress()));
+            EventSystem.Invoke(new ProgressLoadEvent(CheckCurrentProgress()));
         }
 
         SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Single); //TO DO: edit this, cringe
