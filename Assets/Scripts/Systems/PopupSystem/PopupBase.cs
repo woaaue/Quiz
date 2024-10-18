@@ -1,7 +1,7 @@
 using UnityEngine;
 using JetBrains.Annotations;
 
-public class PopupBase : MonoBehaviour
+public sealed class PopupBase : MonoBehaviour
 {
     [field: SerializeField] public PopupAnimator Animator { get; private set; }
 
