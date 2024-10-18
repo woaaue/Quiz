@@ -91,6 +91,8 @@ public sealed class SettingsCreator : ScriptableObject
             AddItem(dataItems);
             SaveLocalizationFile(dataItems);
         }
+
+        Debug.Log($"{_createSetting.Id} identifier of the custom text you added: {_createSetting.LanguageSettings.First(languageSetting => languageSetting.LanguageType == LanguageType.En).Text}");
     }
 
     private void AddItem(Dictionary<LanguageType, List<LocalizationItem>> dataItems)
