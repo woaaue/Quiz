@@ -9,6 +9,7 @@ public sealed class StaggeredAnimation : MonoBehaviour
     private const float INTERVAL = 1.8f;
     private const float DISPLAY_TIME = 2f;
     private const float FADE_DURATION = 3f;
+    private const float ROTATION_DEGREE = 30f;
     private const int NUMBER_VISIBLE_IMAGES = 3;
 
     [SerializeField] private List<Image> _images;
@@ -51,6 +52,7 @@ public sealed class StaggeredAnimation : MonoBehaviour
     private IEnumerator ShowAndHideRoutine(Image image)
     {
         image.transform.localPosition = GetRandomPosition();
+        image.transform.rotation = GetRandomRotation();
         image.gameObject.SetActive(true);
         image.DOFade(1, FADE_DURATION);
 
@@ -62,6 +64,13 @@ public sealed class StaggeredAnimation : MonoBehaviour
             _activeImages.Remove(image);
             _availableImages.Enqueue(image);
         });
+    }
+    
+    private Quaternion GetRandomRotation()
+    {
+        float randomZRotation = Random.Range(-ROTATION_DEGREE, ROTATION_DEGREE);
+
+        return Quaternion.Euler(0, 0, randomZRotation);
     }
 
     private Vector3 GetRandomPosition()
