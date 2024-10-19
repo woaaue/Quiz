@@ -84,6 +84,8 @@ public sealed class SettingsCreator : ScriptableObject
 
     private void CreateUI()
     {
+        _createSetting.SetIdForUI();
+
         var dataItems = GetLocalizationFile();
 
         if (!CheckMacth(dataItems, out var dataId))
@@ -182,6 +184,7 @@ public sealed class CreateSetting
     public string Id { get; private set; }
 
     public LocalizationItemType Type;
+    public string IdForUI;
     public ThemeType Theme;
     public int Level;
     public bool IsCorrect;
@@ -191,6 +194,14 @@ public sealed class CreateSetting
     public void GenerateId()
     {
         Id = Guid.NewGuid().ToString();
+    }
+
+    public void SetIdForUI()
+    {
+        if (string.IsNullOrEmpty(IdForUI))
+            throw new Exception("ID for UI empty");
+
+        Id = IdForUI;
     }
 }
 
