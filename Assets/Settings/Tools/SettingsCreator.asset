@@ -15,15 +15,9 @@ MonoBehaviour:
   _createSetting:
     Type: 0
     IdForUI: 
-    Theme: 2
+    Theme: 0
     Level: 0
     IsCorrect: 0
     NumberForQuestion: 0
-    LanguageSettings:
-    - LanguageType: 1
-      Text: 
-    - LanguageType: 0
-      Text: 
-    - LanguageType: 2
-      Text: 
+    LanguageSettings: []
   _themesSettings: {fileID: 11400000, guid: 62bf116e3a1a8ca4ab4f1aab7dc2f609, type: 2}
