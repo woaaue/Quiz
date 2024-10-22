@@ -712,6 +712,8 @@ GameObject:
   - component: {fileID: 3171765012159464394}
   - component: {fileID: 4473644357508630461}
   - component: {fileID: 3623964779873788948}
+  - component: {fileID: 6641491622884279812}
+  - component: {fileID: -5843540865699696299}
   m_Layer: 5
   m_Name: ThemeProgress
   m_TagString: Untagged
@@ -823,3 +825,32 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6641491622884279812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973625746452493001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7911b0948682f7842a863e05c85a75cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fillImage: {fileID: 5247675736935884078}
+  _themeImage: {fileID: 3604953617909089446}
+  _themeName: {fileID: 2711408176052834518}
+  _progressValue: {fileID: 6252063349900376628}
+--- !u!114 &-5843540865699696299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973625746452493001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
