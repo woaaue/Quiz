@@ -4,9 +4,10 @@ public sealed class UserInfoLoadingOperation : Operation
 {
     public override float Progress => _progress;
 
+    [Inject] private UserInfo _userInfo;
+
     private float _progress;
     private DataLoad _dataLoad;
-    [Inject] UserInfo _userInfo;
 
     protected override void OnBegin()
     {

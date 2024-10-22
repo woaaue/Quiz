@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public sealed class UserInfo
@@ -58,8 +59,16 @@ public sealed class UserProgress
         Progresses = new List<LevelProgress>();
     }
 
+    public int GetStarsForTheme(ThemeType themeType)
+    {
+        return Progresses
+            .Where(progress => progress.ThemeType == themeType)
+            .Sum(progress => progress.CountStars);
+    }
+
     public sealed class LevelProgress
     {
+        public ThemeType ThemeType;
         public string Id;
         public int CountStars;
         public bool IsPassed => CountStars > 0;
