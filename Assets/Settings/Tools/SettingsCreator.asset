@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SettingsCreator
   m_EditorClassIdentifier: 
   _createSetting:
-    Type: 1
-    Theme: 2
+    Type: 0
+    IdForUI: 
+    Theme: 0
     Level: 0
     IsCorrect: 0
     NumberForQuestion: 0
