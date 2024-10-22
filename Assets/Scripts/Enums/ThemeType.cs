@@ -1,7 +1,7 @@
 public enum ThemeType
 {
-    Sql,
-    Php,
+    SQL,
+    PHP,
     CSharp,
     Python,
     JavaScript
