@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 public static class LocalizationProvider
 {
+    private const string EXTENSION = ".json";
+
     public static event Action LanguageChanged;
 
     private static LanguageType _currentLanguage;
@@ -60,9 +62,9 @@ public static class LocalizationProvider
 
             foreach (LocalizationItemType itemType in Enum.GetValues(typeof(LocalizationItemType)))
             {
-                var itemPath = Path.Combine(languagePath, itemType.ToString());
+                var itemPath = Path.Combine(languagePath, $"{itemType}{EXTENSION}");
 
-                if (!Directory.Exists(itemPath))
+                if (!File.Exists(itemPath))
                 {
                     continue;
                 }
