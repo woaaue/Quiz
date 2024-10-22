@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using NaughtyAttributes;
 using System.Collections.Generic;
 
@@ -6,6 +7,12 @@ using System.Collections.Generic;
 public sealed class ThemesSettings : ScriptableObject
 {
     [field: SerializeField] public List<ThemeSettings> ThemeSettings { get; private set; }
+
+    public ThemeSettings GetThemeSettings(ThemeType themeType)
+    {
+        return ThemeSettings
+            .First(themeSetting => themeSetting.Type == themeType);
+    }
 
 #if UNITY_EDITOR
 
