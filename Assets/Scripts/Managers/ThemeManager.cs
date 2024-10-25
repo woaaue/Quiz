@@ -21,6 +21,7 @@ public sealed class ThemeManager : MonoBehaviour
     private void Start()
     {
         FillContent();
+        _isInit = true;
     }
 
     private void OnEnable()
@@ -51,7 +52,6 @@ public sealed class ThemeManager : MonoBehaviour
                 _favouriteThemes.Add(element);
             }
 
-            _isInit = true;
             SetGridSettings(_favouriteThemes.Count);
         }
         else
@@ -102,7 +102,7 @@ public sealed class ThemeManager : MonoBehaviour
             }
         }
 
-        SetGridSettings(_favouriteThemes.Count);
+        SetGridSettings(_favouriteThemes.Count(favouriteTheme => favouriteTheme.gameObject.activeInHierarchy));
     }
 
     private void SetGridSettings(int countElement)
