@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public sealed class UserInfo
 {
+    [field: SerializeField] public string UserName;
     [field: SerializeField] public UserData UserData { get; private set; }
     [field: SerializeField] public UserProgress UserProgress { get; private set; }
     [field: SerializeField] public LanguageSettings LanguageSettings { get; private set; }
@@ -23,10 +24,12 @@ public sealed class UserData
     public event Action<int> ValueChanged;
 
     [field: SerializeField] public int Gold { get; private set; }
+    [field: SerializeField] public List<ThemeType> FavouriteThemes { get; private set; }
 
     public UserData()
     {
         Gold = 250;
+        FavouriteThemes = new List<ThemeType>();
     }
 
     public void IncreaseValue(int value)
@@ -46,6 +49,16 @@ public sealed class UserData
         ValueChanged?.Invoke(Gold);
 
         return true;
+    }
+
+    public void AddFavouriteTheme(ThemeType type)
+    {
+        FavouriteThemes.Add(type);
+    }
+
+    public void RemoveFavouriteTheme(ThemeType type)
+    {
+        FavouriteThemes.Remove(type);
     }
 }
 
