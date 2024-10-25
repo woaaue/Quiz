@@ -67,12 +67,7 @@ public sealed class ThemeManager : MonoBehaviour
     }
 
     private void CheckFavouriteThemes()
-    {
-        if (_userInfo.UserData.FavouriteThemes.Count == 0)
-        {
-            return;
-        }    
-
+    {   
         foreach (var themeType in _userInfo.UserData.FavouriteThemes)
         {
             if (!_favouriteThemes.Any(favouriteTheme => favouriteTheme.Type == themeType))
