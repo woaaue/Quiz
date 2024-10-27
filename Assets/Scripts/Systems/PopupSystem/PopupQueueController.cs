@@ -22,7 +22,7 @@ public sealed class PopupQueueController : MonoBehaviour
         }
     }
 
-    public void ShowPopup()
+    private void ShowPopup()
     {
         if (!_background.activeInHierarchy)
         {
@@ -32,7 +32,6 @@ public sealed class PopupQueueController : MonoBehaviour
         var instance = Instantiate(_queuePopups.Peek(), _container, false);
 
         EventSystem.Subscribe<HidePopupEvent>(HidePopup);
-
     }
 
     private void HidePopup(HidePopupEvent popupEvent)
@@ -45,8 +44,9 @@ public sealed class PopupQueueController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
+        _queuePopups = new Queue<PopupBase>();
         _settings = SettingsProvider.Get<PopupSettings>();
     }
 }
