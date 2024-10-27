@@ -9,17 +9,17 @@ public sealed class LocalizationText : MonoBehaviour
 
     private void Start()
     {
-        OnLanguageChanged();
+        _container.text = LocalizationProvider.GetText(_itemType, _key);
 
-       LocalizationProvider.LanguageChanged += OnLanguageChanged;
+        EventSystem.Subscribe<ChangeLanguageEvent>(OnLanguageChanged);
     }
 
     private void OnDestroy()
     {
-        LocalizationProvider.LanguageChanged -= OnLanguageChanged;
+        EventSystem.Subscribe<ChangeLanguageEvent>(OnLanguageChanged);
     }
 
-    private void OnLanguageChanged()
+    private void OnLanguageChanged(ChangeLanguageEvent languageEvent)
     {
         _container.text = LocalizationProvider.GetText(_itemType, _key);
     }

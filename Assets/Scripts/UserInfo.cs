@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading;
 
 public sealed class UserInfo
 {
@@ -13,6 +14,7 @@ public sealed class UserInfo
     public UserInfo() 
     {
         UserData = new UserData();
+        UserProfile = new UserProfile();
         UserProgress = new UserProgress();
         LanguageSettings = new LanguageSettings();
     }
@@ -21,12 +23,14 @@ public sealed class UserInfo
 [Serializable]
 public sealed class UserData
 {
+    private const int DEFAULT_COUNT_GOLD = 250;
+
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField] public List<ThemeType> FavouriteThemes { get; private set; }
 
     public UserData()
     {
-        Gold = 250;
+        Gold = DEFAULT_COUNT_GOLD;
         FavouriteThemes = new List<ThemeType>();
     }
 
@@ -93,35 +97,34 @@ public sealed class LanguageSettings
 
     public LanguageSettings() 
     {
-        SaveLanguage = LanguageType.Ru;
+
     }
 }
 
 [Serializable]
 public sealed class UserProfile
 {
-    private const int NUMBER_SYMBOLS_NAME = 10;
-    private const string DEFAULT_NAME = "Player";
+    private const string DEFAULT_NAME = "";
 
     [field: SerializeField] public string UserName { get; private set; }
+    [field: SerializeField] public int CountExecution { get; private set; }
     [field: SerializeField] public UserRankType UserRank { get; private set; }
-
-    public readonly int NumberSymbolsName = 10;
 
     public UserProfile()
     {
         UserName = DEFAULT_NAME;
     }
 
-    public bool TryChangeName(string name)
+    public void ChangeCountExecution()
     {
-        if (name.Length > NUMBER_SYMBOLS_NAME)
-            return false;
+        CountExecution++;
+    }
 
+    public void ChangeName(string name)
+    {
         UserName = name;
-        EventSystem.Invoke(new ChangeNameEvent(UserName));
 
-        return true;
+        EventSystem.Invoke(new ChangeNameEvent(UserName));
     }
 
     public void ChangeRank(UserRankType rankType) 

@@ -15,6 +15,7 @@ public sealed class UserInfoLoadingOperation : Operation
         _dataLoad.Load<UserInfo>().ContinueWith(_ =>
         {
             _userInfo = _.Result;
+            _userInfo.UserProfile.ChangeCountExecution();
             _progress = 1f;
             
             SetStateDone();
