@@ -7,7 +7,7 @@ public sealed class OperationPack : Operation
 {
     public override float Progress => _progress;
 
-    [SerializeField] private ExecutionMethod _executionMethod;
+    [SerializeField] private ExecutionMethodType _executionMethod;
     [SerializeField] private List<Operation> _operations;
 
     private float _progress;
@@ -16,8 +16,8 @@ public sealed class OperationPack : Operation
     {
         StartCoroutine(_executionMethod switch
         { 
-            ExecutionMethod.Parallel => ParallelExecutionRoutine(),
-            ExecutionMethod.Sequently => SequentlyExecutionRoutine(),
+            ExecutionMethodType.Parallel => ParallelExecutionRoutine(),
+            ExecutionMethodType.Sequently => SequentlyExecutionRoutine(),
             _ => null
         });
     }
