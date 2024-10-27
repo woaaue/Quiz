@@ -3393,6 +3393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2080278973}
+  - component: {fileID: 2080278974}
   m_Layer: 5
   m_Name: Balance
   m_TagString: Untagged
@@ -3421,6 +3422,19 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &2080278974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080278972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e8532ad3bff1c419e2a49d3c2815d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentValue: {fileID: 22589866}
 --- !u!1 &2095335962
 GameObject:
   m_ObjectHideFlags: 0
