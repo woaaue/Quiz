@@ -13,18 +13,18 @@ public sealed class UserNameView : MonoBehaviour
 
     private void Start()
     {
-        _welcomeText.text = string.Format(PATTERN, LocalizationProvider.GetText(LocalizationItemType.UI, KEY_ZERO), _userInfo.UserProfile.UserName);
+        OnChangeName();
 
-        EventSystem.Subscribe<ChangeNameEvent>(OnChangeName);
+        _userInfo.UserProfile.UserNameChanged += OnChangeName;
     }
 
     private void OnDestroy()
     {
-        EventSystem.Unsubscribe<ChangeNameEvent>(OnChangeName);
+        _userInfo.UserProfile.UserNameChanged -= OnChangeName;
     }
 
-    private void OnChangeName(ChangeNameEvent nameEvent)
+    private void OnChangeName()
     {
-        _welcomeText.text = string.Format(PATTERN, LocalizationProvider.GetText(LocalizationItemType.UI, KEY_ZERO), nameEvent.Name);
+        _welcomeText.text = string.Format(PATTERN, LocalizationProvider.GetText(LocalizationItemType.UI, KEY_ZERO), _userInfo.UserProfile.UserName);
     }
 }

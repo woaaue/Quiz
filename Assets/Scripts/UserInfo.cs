@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading;
 
 public sealed class UserInfo
 {
@@ -28,6 +27,8 @@ public sealed class UserData
     [field: SerializeField] public int Gold { get; private set; }
     [field: SerializeField] public List<ThemeType> FavouriteThemes { get; private set; }
 
+    public event Action GoldChanged;
+
     public UserData()
     {
         Gold = DEFAULT_COUNT_GOLD;
@@ -38,7 +39,7 @@ public sealed class UserData
     {
         Gold += value;
 
-        EventSystem.Invoke(new ChangeGoldEvent(Gold));
+        GoldChanged?.Invoke();
     }
 
     public bool TryDecreaseValue(int value) 
@@ -48,7 +49,7 @@ public sealed class UserData
 
         Gold -= value;
 
-        EventSystem.Invoke(new ChangeGoldEvent(Gold));
+        GoldChanged?.Invoke();
 
         return true;
     }
@@ -94,11 +95,6 @@ public sealed class UserProgress
 public sealed class LanguageSettings
 {
     [field: SerializeField] public LanguageType SaveLanguage { get; private set; }
-
-    public LanguageSettings() 
-    {
-
-    }
 }
 
 [Serializable]
@@ -109,6 +105,8 @@ public sealed class UserProfile
     [field: SerializeField] public string UserName { get; private set; }
     [field: SerializeField] public int CountExecution { get; private set; }
     [field: SerializeField] public UserRankType UserRank { get; private set; }
+
+    public event Action UserNameChanged;
 
     public UserProfile()
     {
@@ -124,7 +122,7 @@ public sealed class UserProfile
     {
         UserName = name;
 
-        EventSystem.Invoke(new ChangeNameEvent(UserName));
+        UserNameChanged?.Invoke();
     }
 
     public void ChangeRank(UserRankType rankType) 

@@ -10,18 +10,18 @@ public sealed class GoldView : MonoBehaviour
 
     private void Start()
     {
-        _currentValue.text = _userInfo.UserData.Gold.ToString();
+        OnChangeGold();
 
-        EventSystem.Subscribe<ChangeGoldEvent>(OnChangeGold);
+        _userInfo.UserData.GoldChanged += OnChangeGold;
     }
 
     private void OnDestroy()
     {
-        EventSystem.Unsubscribe<ChangeGoldEvent>(OnChangeGold);
+        _userInfo.UserData.GoldChanged -= OnChangeGold;
     }
 
-    private void OnChangeGold(ChangeGoldEvent goldEvent)
+    private void OnChangeGold()
     {
-        _currentValue.text = goldEvent.Gold.ToString();
+        _currentValue.text = _userInfo.UserData.Gold.ToString();
     }
 }
