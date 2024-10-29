@@ -7,5 +7,5 @@ public sealed class PurchaseSettings : ScriptableObject
 {
     [field: SerializeField] public List<PurchaseSetting> Settings { get; private set; }
 
-    public List<PurchaseSetting> GetPurchasesForType(PurchaseType purchaseType) => Settings.Where(purchaseSetting => purchaseSetting.PurchaseType == purchaseType).ToList();
+    public PurchaseData GetPurchaseForId(string id) => Settings.First(purchaseSetting => purchaseSetting.PurchaseData.Id == id).PurchaseData;
 }

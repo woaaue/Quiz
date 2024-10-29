@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f814e556ba70a8d4eb334c8bbc58e832, type: 3}
   m_Name: PurchaseSetting
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: gold_25
+  <PurchaseData>k__BackingField:
+    Id: gold_100
+    Price: 0
+    Reward:
+      Value: 100
+      Type: 0
+    PurchaseType: 0
+    PurchaseMethodType: 1
   <Icon>k__BackingField: {fileID: 21300000, guid: 8740725996903644d97e28c95669c701, type: 3}
-  <Type>k__BackingField: 0
-  <Value>k__BackingField: 25
-  <Price>k__BackingField: 0
