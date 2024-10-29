@@ -9,7 +9,7 @@ public sealed class PopupService : MonoBehaviour
 
     public void ShowStartPopup()
     {
-        _popupController.AddPopup(new StartPopupSettings());
+        //_popupController.AddPopup(new StartPopupSettings());
     }
 
     private void Start()
