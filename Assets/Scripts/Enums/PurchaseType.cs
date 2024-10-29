@@ -1,5 +1,5 @@
 public enum PurchaseType
 {
-    Ad,
-    Purchase
+    NonConsumable,
+    Consumable
 }
