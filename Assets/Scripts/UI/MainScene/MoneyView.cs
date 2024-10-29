@@ -2,7 +2,7 @@ using TMPro;
 using Zenject;
 using UnityEngine;
 
-public sealed class GoldView : MonoBehaviour
+public sealed class MoneyView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _currentValue;
 
