@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e00d2153525b1f408ce4a9d08b02b5b, type: 3}
+  m_Name: PurchaseSettings
+  m_EditorClassIdentifier: 
+  <Settings>k__BackingField:
+  - {fileID: 11400000, guid: 12ad694a8806a47489285cee1957a06f, type: 2}
+  - {fileID: 11400000, guid: 8e40e340e351cfe4fbb26192a727c16e, type: 2}
+  - {fileID: 11400000, guid: 2f8e941af8415c547ac9c7b5ec3a8a6f, type: 2}
+  - {fileID: 11400000, guid: eedb09fc6d5cead46a6665e48c47f159, type: 2}
+  - {fileID: 11400000, guid: 0394e297e4f0ccf4faaeb8403c185021, type: 2}
+  - {fileID: 11400000, guid: d82070dd32910894db3cc7db1d826508, type: 2}
+  - {fileID: 11400000, guid: 39fe32261230f72499d2956ff597f190, type: 2}
