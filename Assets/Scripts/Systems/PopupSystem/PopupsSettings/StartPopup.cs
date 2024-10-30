@@ -23,10 +23,10 @@ public class StartPopup : Popup<StartPopupSettings>
     }
 
     [UsedImplicitly]
-    public override void ClosePopup()
+    public override void Close()
     {
         SetNickname();
-        base.ClosePopup();
+        base.Close();
     }
 
     private void SetNickname()

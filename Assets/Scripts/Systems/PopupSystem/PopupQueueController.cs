@@ -31,16 +31,22 @@ public sealed class PopupQueueController : MonoBehaviour
 
         var instance = Instantiate(_queuePopups.Peek(), _container, false);
 
-        EventSystem.Subscribe<HidePopupEvent>(HidePopup);
+        instance.PopupClosed += HidePopup;
     }
 
-    private void HidePopup(HidePopupEvent popupEvent)
+    private void HidePopup()
     {
-        _queuePopups.Dequeue();
+        var closedPopup = _queuePopups.Dequeue();
+
+        closedPopup.PopupClosed -= HidePopup;
 
         if (_queuePopups.Count == 0)
         {
             _background.SetActive(false);
+        }
+        else
+        {
+            ShowPopup();
         }
     }
 
