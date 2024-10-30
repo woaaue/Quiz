@@ -10,6 +10,8 @@ public static class LocalizationProvider
 {
     private const string EXTENSION = ".json";
 
+    public static event Action LanguageChanged;
+
     private static LanguageType _currentLanguage;
     private static Dictionary<LanguageType, LocalizationGroup> _localizationData;
 
@@ -24,7 +26,7 @@ public static class LocalizationProvider
         {
             _currentLanguage = language;
 
-            EventSystem.Invoke(new ChangeLanguageEvent());
+            LanguageChanged?.Invoke();
         }
     }
 
