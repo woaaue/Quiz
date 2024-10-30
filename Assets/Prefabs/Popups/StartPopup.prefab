@@ -357,8 +357,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4792221826351501234}
+  - component: {fileID: 1526741548951952508}
   - component: {fileID: 8405529859322022803}
-  - component: {fileID: 3188021805698861403}
   - component: {fileID: 3179513110743308216}
   m_Layer: 5
   m_Name: StartPopup
@@ -387,6 +387,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 720, y: 950}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1526741548951952508
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694738004368254670}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!114 &8405529859322022803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,20 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdf0745ddf8f3044babb9e5bd341124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Animator>k__BackingField: {fileID: 3188021805698861403}
+  _canvasGroup: {fileID: 1526741548951952508}
   _inputField: {fileID: 164482531639934933}
---- !u!114 &3188021805698861403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694738004368254670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9562bf752b462b4198188f631aae7d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3179513110743308216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8405529859322022803}
         m_TargetAssemblyTypeName: StartPopup, Assembly-CSharp
-        m_MethodName: ClosePopup
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
