@@ -3,7 +3,7 @@ using Zenject;
 using UnityEngine;
 using JetBrains.Annotations;
 
-public class StartPopup : Popup<StartPopupSettings>
+public class NamePopup : Popup<NamePopupSettings>
 {
     private const string DEFAULT_NAME_KEY = "player_text";
 
@@ -11,7 +11,7 @@ public class StartPopup : Popup<StartPopupSettings>
 
     [Inject] private UserInfo _userInfo;
 
-    public override void Setup(StartPopupSettings settings)
+    public override void Setup(NamePopupSettings settings)
     {
         base.Setup(settings);
     }
@@ -42,7 +42,7 @@ public class StartPopup : Popup<StartPopupSettings>
     }
 }
 
-public sealed class StartPopupSettings : PopupBaseSettings
+public sealed class NamePopupSettings : PopupBaseSettings
 {
 
 }
