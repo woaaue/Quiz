@@ -7,16 +7,16 @@ public sealed class PopupService : MonoBehaviour
 
     [Inject] private UserInfo _userInfo;
 
-    public void ShowStartPopup()
+    public void ShowStartPopups()
     {
-        _popupController.AddPopup(new StartPopupSettings());
+        _popupController.AddPopup(new NamePopupSettings());
     }
 
     private void Start()
     {
         if (_userInfo.UserProfile.CountExecution < 2)
         {
-            ShowStartPopup();
+            ShowStartPopups();
         }
     }
 }
