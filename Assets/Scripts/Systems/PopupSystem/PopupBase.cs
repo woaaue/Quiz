@@ -24,12 +24,12 @@ public class PopupBase : MonoBehaviour
         _canvasGroup.blocksRaycasts = false;
     }
 
-    private void Start()
+    private protected void Start()
     {
         Show();
     }
 
-    private void Destroy()
+    private protected void Destroy()
     {
         PopupClosed?.Invoke();
         Destroy(gameObject);
