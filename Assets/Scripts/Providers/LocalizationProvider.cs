@@ -11,20 +11,21 @@ public static class LocalizationProvider
     private const string EXTENSION = ".json";
 
     public static event Action LanguageChanged;
+    
+    public static LanguageType CurrentLanguage { get; private set; }
 
-    private static LanguageType _currentLanguage;
     private static Dictionary<LanguageType, LocalizationGroup> _localizationData;
 
     public static void SetLanguage(LanguageType language)
     {
-        _currentLanguage = language;
+        CurrentLanguage = language;
     }
 
     public static void SwitchLanguage(LanguageType language)
     {
-        if (_currentLanguage != language)
+        if (CurrentLanguage != language)
         {
-            _currentLanguage = language;
+            CurrentLanguage = language;
 
             LanguageChanged?.Invoke();
         }
@@ -35,7 +36,7 @@ public static class LocalizationProvider
         await LoadLocalizationAsync(path);
     }
 
-    public static string GetText(LocalizationItemType itemType, string key) => GetLocalizedTextByKey(_currentLanguage, itemType, key);
+    public static string GetText(LocalizationItemType itemType, string key) => GetLocalizedTextByKey(CurrentLanguage, itemType, key);
 
     private static string GetLocalizedTextByKey(LanguageType language, LocalizationItemType itemType, string key)
     {
