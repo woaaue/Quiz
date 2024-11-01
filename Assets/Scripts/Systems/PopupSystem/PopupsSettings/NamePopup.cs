@@ -9,9 +9,11 @@ public class NamePopup : Popup<NamePopupSettings>
     private const string DEFAULT_NAME_KEY = "player_text";
 
     [SerializeField] private TMP_InputField _inputField;
+    [SerializeField] private GameObject _languageScroll;
     [SerializeField] private TextMeshProUGUI _currentLanguage;
     [SerializeField] private Transform _languageScrollContainer;
 
+    private bool _isSwitch;
     private UserInfo _userInfo;
     private PoolService _poolService;
 
@@ -36,6 +38,13 @@ public class NamePopup : Popup<NamePopupSettings>
     }
 
     [UsedImplicitly]
+    public void SwichSelectLanguage()
+    {
+        _isSwitch = !_isSwitch;
+        _languageScroll.SetActive(_isSwitch);
+    }
+
+    [UsedImplicitly]
     public override void Close()
     {
         SetNickname();
@@ -45,6 +54,7 @@ public class NamePopup : Popup<NamePopupSettings>
     private void Start()
     {
         LocalizationProvider.LanguageChanged += OnChangeCurrentLanguage;
+        OnChangeCurrentLanguage();
         base.Start();
     }
 
