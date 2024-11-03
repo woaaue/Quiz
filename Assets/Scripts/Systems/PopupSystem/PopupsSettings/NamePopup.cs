@@ -3,27 +3,22 @@ using System;
 using Zenject;
 using UnityEngine;
 using JetBrains.Annotations;
+using System.Collections.Generic;
 
 public class NamePopup : Popup<NamePopupSettings>
 {
     private const string DEFAULT_NAME_KEY = "player_text";
+    private const string DEFAULT_LANGUAGE_KEY = "{0}_popup_text";
 
+    [SerializeField] private TMP_Dropdown _dropdown;
     [SerializeField] private TMP_InputField _inputField;
-    [SerializeField] private GameObject _languageScroll;
-    [SerializeField] private TextMeshProUGUI _currentLanguage;
-    [SerializeField] private Transform _languageScrollContainer;
 
-    private bool _isSwitch;
     private UserInfo _userInfo;
-    private PoolService _poolService;
 
     [Inject]
-    public void Construct(PoolService poolService, UserInfo userInfo)
+    public void Construct(UserInfo userInfo)
     {
         _userInfo = userInfo;
-        _poolService = poolService;
-
-        FillLanguageScroll();
     }
 
     public override void Setup(NamePopupSettings settings)
@@ -32,16 +27,10 @@ public class NamePopup : Popup<NamePopupSettings>
     }
 
     [UsedImplicitly]
-    public void SetRank(int userRankType)
+    public void ChangeLanguage()
     {
-        _userInfo.UserProfile.ChangeRank((UserRankType)userRankType);
-    }
-
-    [UsedImplicitly]
-    public void SwichSelectLanguage()
-    {
-        _isSwitch = !_isSwitch;
-        _languageScroll.SetActive(_isSwitch);
+        LocalizationProvider.SwitchLanguage((LanguageType)_dropdown.value);
+        FillDropdown();
     }
 
     [UsedImplicitly]
@@ -53,14 +42,22 @@ public class NamePopup : Popup<NamePopupSettings>
 
     private void Start()
     {
-        LocalizationProvider.LanguageChanged += OnChangeCurrentLanguage;
-        OnChangeCurrentLanguage();
         base.Start();
+        FillDropdown();
     }
 
-    private void OnDestroy()
+    private void FillDropdown()
     {
-        LocalizationProvider.LanguageChanged -= OnChangeCurrentLanguage;
+        var dropdownOptions = new List<TMP_Dropdown.OptionData>();
+
+        foreach (LanguageType languageType in Enum.GetValues(typeof(LanguageType)))
+        {
+            var optionData = new TMP_Dropdown.OptionData($"{LocalizationProvider.GetText(LocalizationItemType.UI, string.Format(DEFAULT_LANGUAGE_KEY, languageType.ToString().ToLower()))}");
+
+            dropdownOptions.Add(optionData);
+        }
+
+        _dropdown.options = dropdownOptions;
     }
 
     private void SetNickname()
@@ -72,23 +69,6 @@ public class NamePopup : Popup<NamePopupSettings>
         else
         {
             _userInfo.UserProfile.ChangeName(LocalizationProvider.GetText(LocalizationItemType.UI, DEFAULT_NAME_KEY));
-        }
-    }
-
-    private void OnChangeCurrentLanguage()
-    {
-        _currentLanguage.text = LocalizationProvider.CurrentLanguage.ToString();
-    }
-
-    private void FillLanguageScroll()
-    {
-        foreach (LanguageType type in Enum.GetValues(typeof(LanguageType)))
-        {
-            var element = _poolService.Get<Language>();
-
-            element.transform.SetParent(_languageScrollContainer, false);
-            element.Setup(type);
-            element.gameObject.SetActive(true);
         }
     }
 }
