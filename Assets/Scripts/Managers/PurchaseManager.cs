@@ -1,9 +1,17 @@
+using Zenject;
 using UnityEngine;
 
 public sealed class PurchaseManager : MonoBehaviour
 {
-    [SerializeField] private PurchasePool _pool;
     [SerializeField] private Transform _conteiner;
+
+    private PoolService _poolService;
+
+    [Inject]
+    public void Construct(PoolService poolService)
+    {
+        _poolService = poolService;
+    }
 
     private void Start()
     {
@@ -16,7 +24,7 @@ public sealed class PurchaseManager : MonoBehaviour
 
         foreach (var purchaseSetting in purchaseSettings)
         {
-            var purchase = _pool.GetElement();
+            var purchase = _poolService.Get<Purchase>();
             purchase.transform.SetParent(_conteiner, false);
 
             purchase.Setup(purchaseSetting);

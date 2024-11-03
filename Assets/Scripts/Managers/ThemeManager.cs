@@ -8,15 +8,21 @@ using System.Collections.Generic;
 public sealed class ThemeManager : MonoBehaviour
 {
     [SerializeField] private Theme _prefab;
-    [SerializeField] private ThemePool _pool;
     [SerializeField] private bool _isFavourites;
     [SerializeField] private Transform _container;
     [SerializeField] private GridLayoutGroup _layoutGroup;
 
-    [Inject] private UserInfo _userInfo;
-
     private bool _isInit;
+    private UserInfo _userInfo;
+    private PoolService _poolService;
     private List<Theme> _favouriteThemes;
+
+    [Inject]
+    public void Construct(UserInfo userInfo, PoolService poolService)
+    {
+        _userInfo = userInfo;
+        _poolService = poolService;
+    }
 
     private void Start()
     {
@@ -45,7 +51,7 @@ public sealed class ThemeManager : MonoBehaviour
             
             foreach (var themeType in _userInfo.UserData.FavouriteThemes)
             {
-                var element = _pool.GetElement();
+                var element = _poolService.Get<Theme>();
 
                 element.transform.SetParent(_container, false);
                 element.Setup(themeType, _isFavourites);
@@ -58,7 +64,7 @@ public sealed class ThemeManager : MonoBehaviour
         {
             foreach (ThemeType themeType in Enum.GetValues(typeof(ThemeType)))
             {
-                var element = _pool.GetElement();
+                var element = _poolService.Get<Theme>();
 
                 element.transform.SetParent(_container, false);
                 element.Setup(themeType, _isFavourites);
@@ -72,7 +78,7 @@ public sealed class ThemeManager : MonoBehaviour
         {
             if (!_favouriteThemes.Any(favouriteTheme => favouriteTheme.Type == themeType))
             {
-                var element = _pool.GetElement();
+                var element = _poolService.Get<Theme>();
 
                 element.transform.SetParent(_container, false);
                 element.Setup(themeType, _isFavourites);
