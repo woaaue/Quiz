@@ -25,6 +25,7 @@ public sealed class UserData
     private const int DEFAULT_COUNT_GOLD = 250;
 
     [field: SerializeField] public int Gold { get; private set; }
+    [field: SerializeField] public List<UserRankTheme> RankThemes { get; private set; }
     [field: SerializeField] public List<ThemeType> FavouriteThemes { get; private set; }
 
     public event Action GoldChanged;
@@ -32,7 +33,10 @@ public sealed class UserData
     public UserData()
     {
         Gold = DEFAULT_COUNT_GOLD;
+        RankThemes = new List<UserRankTheme>();
         FavouriteThemes = new List<ThemeType>();
+
+        FillDefaultThemesRank();
     }
 
     public void IncreaseValue(int value)
@@ -62,6 +66,30 @@ public sealed class UserData
     public void RemoveFavouriteTheme(ThemeType type)
     {
         FavouriteThemes.Remove(type);
+    }
+
+    public void ChangeRankTheme(ThemeType themeType, UserRankType userRankType)
+    {
+        RankThemes.First(rankTheme => rankTheme.TypeTheme == themeType).Rank = userRankType;
+    }
+
+    private void FillDefaultThemesRank()
+    {
+        foreach (ThemeType themeType in Enum.GetValues(typeof(ThemeType)))
+        {
+            var themeRank = new UserRankTheme
+            {
+                TypeTheme = themeType,
+            };
+
+            RankThemes.Add(themeRank);
+        }
+    }
+
+    public sealed class UserRankTheme
+    {
+        public ThemeType TypeTheme;
+        public UserRankType Rank;
     }
 }
 
@@ -104,7 +132,6 @@ public sealed class UserProfile
 
     [field: SerializeField] public string UserName { get; private set; }
     [field: SerializeField] public int CountExecution { get; private set; }
-    [field: SerializeField] public UserRankType UserRank { get; private set; }
 
     public event Action UserNameChanged;
 
@@ -123,10 +150,5 @@ public sealed class UserProfile
         UserName = name;
 
         UserNameChanged?.Invoke();
-    }
-
-    public void ChangeRank(UserRankType rankType) 
-    {
-        UserRank = rankType;
     }
 }
