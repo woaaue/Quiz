@@ -12,14 +12,14 @@ public sealed class PoolService : IPoolService
 {
     private ThemePoolView _themePool;
     private PurchasePoolView _purchasePool;
-    private LanguagePoolView _languagePool;
+    private RankSelectorPoolView _rankSelectorPool;
 
     [Inject]
-    public void Construct(ThemePoolView themePool, PurchasePoolView purchasePool, LanguagePoolView languagePool)
+    public void Construct(ThemePoolView themePool, PurchasePoolView purchasePool, RankSelectorPoolView rankSelectorPool)
     {
         _themePool = themePool;
         _purchasePool = purchasePool;
-        _languagePool = languagePool;
+        _rankSelectorPool = rankSelectorPool;
 
         Initialize();
     }
@@ -32,7 +32,7 @@ public sealed class PoolService : IPoolService
         {
             _ when type == typeof(Theme) => _themePool as T,
             _ when type == typeof(Purchase) => _purchasePool.Get() as T,
-            _ when type == typeof(Language) => _languagePool.Get() as T,
+            _ when type == typeof(RankSelector) => _rankSelectorPool.Get() as T,
             _ => throw new ArgumentException($"Unsupported type: {type}")
         };
     }
@@ -49,6 +49,10 @@ public sealed class PoolService : IPoolService
                 _purchasePool.Release(purchase);
                 break;
 
+            case RankSelector selector:
+                _rankSelectorPool.Release(selector);
+                break;
+
             default:
                 throw new ArgumentException($"Unsupported type: {typeof(T)}");
         }
@@ -58,6 +62,6 @@ public sealed class PoolService : IPoolService
     {
         _themePool.Init();
         _purchasePool.Init();
-        _languagePool.Init();
+        _rankSelectorPool.Init();
     }
 }
