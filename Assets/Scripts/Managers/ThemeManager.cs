@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 public sealed class ThemeManager : MonoBehaviour
 {
-    [SerializeField] private Theme _prefab;
     [SerializeField] private bool _isFavourites;
     [SerializeField] private Transform _container;
     [SerializeField] private GridLayoutGroup _layoutGroup;

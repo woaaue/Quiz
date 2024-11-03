@@ -30,7 +30,7 @@ public sealed class PoolService : IPoolService
 
         return type switch
         {
-            _ when type == typeof(Theme) => _themePool as T,
+            _ when type == typeof(Theme) => _themePool.Get() as T,
             _ when type == typeof(Purchase) => _purchasePool.Get() as T,
             _ when type == typeof(RankSelector) => _rankSelectorPool.Get() as T,
             _ => throw new ArgumentException($"Unsupported type: {type}")
