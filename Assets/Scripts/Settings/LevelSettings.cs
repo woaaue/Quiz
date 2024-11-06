@@ -12,6 +12,7 @@ public sealed class LevelSettings : ScriptableObject
 
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] public int Number { get; private set; }
+    [field: SerializeField] public UserRankType LevelRank { get; private set; }
     [field: SerializeField] public List<QuestionSettings> QuestionsSettings { get; private set; }
 
 #if UNITY_EDITOR
@@ -21,9 +22,7 @@ public sealed class LevelSettings : ScriptableObject
         Number = numberLevel;
         Id = Guid.NewGuid().ToString();
 
-        EditorUtility.SetDirty(this);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
+        SaveAssets();
     }
 
     public void SetAnswer(AnswerParameters parameters)
@@ -62,9 +61,7 @@ public sealed class LevelSettings : ScriptableObject
             IsCorrect = parameters.IsCorrect,
         });
 
-        EditorUtility.SetDirty(this);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
+        SaveAssets();
     }
 
     public void SetQuestion(QuestionSettings question)
@@ -81,6 +78,11 @@ public sealed class LevelSettings : ScriptableObject
 
         QuestionsSettings.Add(question);
 
+        SaveAssets();
+    }
+
+    public void SaveAssets()
+    {
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();

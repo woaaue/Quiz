@@ -25,5 +25,17 @@ public sealed class ThemesSettings : ScriptableObject
         });
     }
 
+    [Button("SaveAssets")]
+    private void Save()
+    {
+        foreach (var themeSetting in ThemeSettings) 
+        {
+            foreach (var level in themeSetting.Levels.LevelsSetting)
+            {
+                level.SaveAssets();
+            }
+        }
+    }
+
 #endif
 }
