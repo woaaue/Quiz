@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: SettingsCreator
   m_EditorClassIdentifier: 
   _createSetting:
-    Type: 0
+    Type: 1
     IdForUI: 
-    Theme: 0
-    Level: 0
+    Theme: 4
+    Level: 3
     IsCorrect: 0
-    NumberForQuestion: 0
-    LanguageSettings: []
+    NumberForQuestion: 5
+    LanguageSettings:
+    - LanguageType: 0
+      Text: Which keyword is used for asynchronous execution of functions?
+    - LanguageType: 1
+      Text: "\u041A\u0430\u043A\u043E\u0435 \u043A\u043B\u044E\u0447\u0435\u0432\u043E\u0435
+        \u0441\u043B\u043E\u0432\u043E \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F
+        \u0434\u043B\u044F \u0430\u0441\u0438\u043D\u0445\u0440\u043E\u043D\u043D\u043E\u0433\u043E
+        \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u0444\u0443\u043D\u043A\u0446\u0438\u0439?"
+    - LanguageType: 2
+      Text: "Fonksiyonlar\u0131n asenkron y\xFCr\xFCt\xFClmesi i\xE7in hangi anahtar
+        kelime kullan\u0131l\u0131r?"
   _themesSettings: {fileID: 11400000, guid: 62bf116e3a1a8ca4ab4f1aab7dc2f609, type: 2}

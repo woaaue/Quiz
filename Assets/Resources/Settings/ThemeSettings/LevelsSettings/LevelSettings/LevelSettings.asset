@@ -15,4 +15,14 @@ MonoBehaviour:
   <Id>k__BackingField: d026bc49-30f1-41ed-a98d-eab7f43b2336
   <Number>k__BackingField: 1
   <LevelRank>k__BackingField: 0
-  <QuestionsSettings>k__BackingField: []
+  <QuestionsSettings>k__BackingField:
+  - Id: fabbdea3-864f-4177-b56d-b993485172ee
+    AnswersSettings: []
+  - Id: 0deb75b6-3231-43a4-8d09-37579a0e5155
+    AnswersSettings: []
+  - Id: 57c1c8e0-f5ef-463b-818e-2e12c1692c61
+    AnswersSettings: []
+  - Id: 94c4666c-f268-4f69-b997-c7f787e629c8
+    AnswersSettings: []
+  - Id: 67b3116e-0bd4-4019-8b04-c3f4e32a5171
+    AnswersSettings: []
