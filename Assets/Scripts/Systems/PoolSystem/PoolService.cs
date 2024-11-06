@@ -11,15 +11,19 @@ public interface IPoolService
 public sealed class PoolService : IPoolService
 {
     private ThemePoolView _themePool;
+    private LevelPoolView _levelPool;
+    private LevelsPoolView _levelsPool;
     private PurchasePoolView _purchasePool;
     private RankSelectorPoolView _rankSelectorPool;
 
     [Inject]
-    public void Construct(ThemePoolView themePool, PurchasePoolView purchasePool, RankSelectorPoolView rankSelectorPool)
+    public void Construct(ThemePoolView themePool, PurchasePoolView purchasePool, RankSelectorPoolView rankSelectorPool, LevelsPoolView levelsPoolView, LevelPoolView levelPoolView)
     {
         _themePool = themePool;
         _purchasePool = purchasePool;
         _rankSelectorPool = rankSelectorPool;
+        _levelPool = levelPoolView;
+        _levelsPool = levelsPoolView;
 
         Initialize();
     }
@@ -31,7 +35,9 @@ public sealed class PoolService : IPoolService
         return type switch
         {
             _ when type == typeof(Theme) => _themePool.Get() as T,
+            _ when type == typeof(LevelView) => _levelPool.Get() as T,
             _ when type == typeof(Purchase) => _purchasePool.Get() as T,
+            _ when type == typeof(LevelsView) => _levelsPool.Get() as T,
             _ when type == typeof(RankSelector) => _rankSelectorPool.Get() as T,
             _ => throw new ArgumentException($"Unsupported type: {type}")
         };
@@ -63,5 +69,7 @@ public sealed class PoolService : IPoolService
         _themePool.Init();
         _purchasePool.Init();
         _rankSelectorPool.Init();
+        _levelsPool.Init();
+        _levelPool.Init();
     }
 }
