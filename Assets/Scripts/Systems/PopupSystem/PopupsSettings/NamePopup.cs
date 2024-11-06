@@ -5,7 +5,7 @@ using UnityEngine;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 
-public class NamePopup : Popup<NamePopupSettings>
+public sealed class NamePopup : Popup<NamePopupSettings>
 {
     private const string DEFAULT_NAME_KEY = "player_text";
     private const string DEFAULT_LANGUAGE_KEY = "{0}_popup_text";

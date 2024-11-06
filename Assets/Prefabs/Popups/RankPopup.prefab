@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5054406409543779721}
+  <IsActiveNavigationPanel>k__BackingField: 0
   _container: {fileID: 4868231682402293599}
 --- !u!114 &2546485874517957191
 MonoBehaviour:

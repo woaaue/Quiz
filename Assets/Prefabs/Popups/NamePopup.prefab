@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 1526741548951952508}
+  <IsActiveNavigationPanel>k__BackingField: 0
   _dropdown: {fileID: 4873832827044300105}
   _inputField: {fileID: 3782508487979387210}
 --- !u!114 &3179513110743308216
@@ -325,7 +326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6003305444044482699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2687,7 +2688,7 @@ RectTransform:
   m_Father: {fileID: 797050670419637051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
