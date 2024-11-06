@@ -13,6 +13,11 @@ public sealed class PopupService : MonoBehaviour
         _popupController.AddPopup(new RankPopupSettings());
     }
 
+    public void HidePopups()
+    {
+        _popupController.HideAllPopups();
+    }
+
     private void Start()
     {
         if (_userInfo.UserProfile.CountExecution < 2)

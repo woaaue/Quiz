@@ -10,6 +10,7 @@ public class PopupBase : MonoBehaviour
     public event Action PopupClosed;
 
     [SerializeField] private CanvasGroup _canvasGroup;
+    [field: SerializeField] public bool IsActiveNavigationPanel { get; private set; }
 
     [UsedImplicitly]
     public virtual void Close()

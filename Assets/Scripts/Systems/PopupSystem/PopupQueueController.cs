@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 public sealed class PopupQueueController : MonoBehaviour
 {
+    private const int POSITION_OFFSET_WITH_NAV_PANEL = 1;
+
     [SerializeField] private Transform _container;
     [SerializeField] private GameObject _background;
 
     private PopupSettings _settings;
+    private PopupBase _currentPopup;
     private Queue<PopupBase> _queuePopups;
 
     public void AddPopup<T>(T settings) where T : PopupBaseSettings
@@ -22,23 +25,47 @@ public sealed class PopupQueueController : MonoBehaviour
         }
     }
 
+    public void HideAllPopups()
+    {
+        if (_queuePopups.Count > 0)
+        {
+            _currentPopup.Close();
+            _queuePopups.Clear();
+        }
+    }
+
     private void ShowPopup()
     {
         if (!_background.activeInHierarchy)
         {
             _background.SetActive(true);
         }
+        
+        var popupPrefab = _queuePopups.Peek();
 
-        var instance = Instantiate(_queuePopups.Peek(), _container, false);
+        if (popupPrefab.IsActiveNavigationPanel)
+        {
+            transform.SetSiblingIndex(POSITION_OFFSET_WITH_NAV_PANEL);
+        }
+        else
+        {
+            transform.SetAsLastSibling();
+        }
 
-        instance.PopupClosed += HidePopup;
+        _currentPopup = Instantiate(popupPrefab, _container, false);
+
+        _currentPopup.PopupClosed += HidePopup;
     }
 
     private void HidePopup()
     {
-        var closedPopup = _queuePopups.Dequeue();
+        if (_queuePopups.Count != 0)
+        {
+            _queuePopups.Dequeue();
+        }
 
-        closedPopup.PopupClosed -= HidePopup;
+        _currentPopup.PopupClosed -= HidePopup;
+        _currentPopup = null;
 
         if (_queuePopups.Count == 0)
         {
