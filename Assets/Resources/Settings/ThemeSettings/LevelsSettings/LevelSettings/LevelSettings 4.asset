@@ -15,4 +15,54 @@ MonoBehaviour:
   <Id>k__BackingField: 6a8e8339-00ef-466d-a072-5ee23e303149
   <Number>k__BackingField: 5
   <LevelRank>k__BackingField: 1
-  <QuestionsSettings>k__BackingField: []
+  <QuestionsSettings>k__BackingField:
+  - Id: 64dee71f-944a-4031-97f4-eb7f1c9816f4
+    AnswersSettings:
+    - Id: 95da097f-be07-4715-bbe5-c89430abd900
+      IsCorrect: 1
+    - Id: faf34c83-177a-4a77-8eec-7ff975f9c170
+      IsCorrect: 0
+    - Id: 5d426ea5-ce6c-4de5-8245-c2acea83e9f0
+      IsCorrect: 0
+    - Id: a4b5f495-7a6b-46d4-ac78-658128e6395d
+      IsCorrect: 0
+  - Id: 3af69fe9-91d4-42df-ab1e-63cd5deb5239
+    AnswersSettings:
+    - Id: 4b49afc9-66a4-4004-9a87-7cf62d79e52c
+      IsCorrect: 1
+    - Id: 2fd34fbf-75dd-42f9-a0f8-02ab6ab1480f
+      IsCorrect: 0
+    - Id: a23da4a0-ced6-4b33-9670-d2d7c256c46d
+      IsCorrect: 0
+    - Id: c79064a4-4b83-499d-9de3-cfa2e1dc3cff
+      IsCorrect: 0
+  - Id: 094e0854-4fb5-4a62-bd60-93ad8f03e169
+    AnswersSettings:
+    - Id: 27ed419a-2ac5-4646-bf4d-618d6e7955fe
+      IsCorrect: 1
+    - Id: 3af6fd91-699c-4c26-a964-2d0a64d5284f
+      IsCorrect: 0
+    - Id: b0691269-8310-4085-ad50-6e8e95f4535f
+      IsCorrect: 0
+    - Id: 6ed1b84c-1fb2-4ab8-8b71-8da4b0bb6345
+      IsCorrect: 0
+  - Id: 25441318-b657-4ed2-ae84-7937deb670b7
+    AnswersSettings:
+    - Id: e9cf782f-6948-4e69-a040-737f71e05566
+      IsCorrect: 1
+    - Id: a30a9fca-460e-4b41-996f-2509070e94fa
+      IsCorrect: 0
+    - Id: e6c35a85-64a8-480f-8ac4-c55d98b2d944
+      IsCorrect: 0
+    - Id: 0d482862-3a58-4ccd-83b2-57b01047dbe4
+      IsCorrect: 0
+  - Id: a1c16904-a172-43e6-916e-1a3b5f96d82e
+    AnswersSettings:
+    - Id: 7e107383-a58b-4f43-99ad-f27c0583a63f
+      IsCorrect: 1
+    - Id: 45f62a6f-970d-4137-a93a-bcd773679b99
+      IsCorrect: 0
+    - Id: f16b0c85-dc6b-4d24-ae6b-33372dbfdeb7
+      IsCorrect: 0
+    - Id: d41d28d9-369d-402a-b4c2-2403112ab655
+      IsCorrect: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7f9cee2eabf2c148b827943fafd1ffa, type: 3}
-  m_Name: LevelSettings 6
+  m_Name: LevelSettings 27
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: bdc5f43c-1200-40ff-9b78-9f331b7bec1e
-  <Number>k__BackingField: 2
-  <LevelRank>k__BackingField: 0
+  <Id>k__BackingField: 367790f3-4299-47be-bf9e-74c459e6ff01
+  <Number>k__BackingField: 8
+  <LevelRank>k__BackingField: 1
   <QuestionsSettings>k__BackingField: []

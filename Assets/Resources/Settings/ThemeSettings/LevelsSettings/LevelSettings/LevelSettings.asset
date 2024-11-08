@@ -16,13 +16,53 @@ MonoBehaviour:
   <Number>k__BackingField: 1
   <LevelRank>k__BackingField: 0
   <QuestionsSettings>k__BackingField:
-  - Id: fabbdea3-864f-4177-b56d-b993485172ee
-    AnswersSettings: []
-  - Id: 0deb75b6-3231-43a4-8d09-37579a0e5155
-    AnswersSettings: []
-  - Id: 57c1c8e0-f5ef-463b-818e-2e12c1692c61
-    AnswersSettings: []
-  - Id: 94c4666c-f268-4f69-b997-c7f787e629c8
-    AnswersSettings: []
-  - Id: 67b3116e-0bd4-4019-8b04-c3f4e32a5171
-    AnswersSettings: []
+  - Id: a9e89cb4-d928-47ed-97ce-b5f0bb020a29
+    AnswersSettings:
+    - Id: 178afc0a-af2a-419a-b11b-fd89d1a35a8d
+      IsCorrect: 1
+    - Id: 4587a0f5-2cdd-4881-9fd0-327f05cb7b31
+      IsCorrect: 0
+    - Id: 82482b9a-9998-4c86-a69e-eafc1b2104be
+      IsCorrect: 0
+    - Id: f31deabf-f05e-45b8-8729-976083e01e2c
+      IsCorrect: 0
+  - Id: 39837694-bccc-4e8f-b614-cd5a0da104eb
+    AnswersSettings:
+    - Id: a1a5602d-8f88-452f-9f11-4433bc0d15b1
+      IsCorrect: 1
+    - Id: 5ff1983a-6b7f-45b3-a496-d4434491bf57
+      IsCorrect: 0
+    - Id: 60eda382-7c70-467e-94ac-637043866547
+      IsCorrect: 0
+    - Id: 15582a38-ec3e-4623-925c-7adb0a9d2448
+      IsCorrect: 0
+  - Id: 79ddb95d-d67e-4025-b9be-06e72edc4339
+    AnswersSettings:
+    - Id: 5ff1983a-6b7f-45b3-a496-d4434491bf57
+      IsCorrect: 1
+    - Id: a1a5602d-8f88-452f-9f11-4433bc0d15b1
+      IsCorrect: 0
+    - Id: 4587a0f5-2cdd-4881-9fd0-327f05cb7b31
+      IsCorrect: 0
+    - Id: 60eda382-7c70-467e-94ac-637043866547
+      IsCorrect: 0
+  - Id: d0c0d8fb-4218-443b-a625-fb21303f7bee
+    AnswersSettings:
+    - Id: 3d52fae0-5476-4d7c-9a59-6f56be03deb5
+      IsCorrect: 1
+    - Id: 0b0e4f13-ee22-43a9-8caf-0597d3165706
+      IsCorrect: 0
+    - Id: b2363150-6b19-49d2-80a8-1e5d4bd2e4e7
+      IsCorrect: 0
+    - Id: 48eae10c-632f-4715-b3ca-5ff7be71d44b
+      IsCorrect: 0
+  - Id: b66563bb-40d6-4ad8-89f9-9a0acce6cc64
+    AnswersSettings:
+    - Id: aeb2202f-7bb4-4ba8-abdd-4309be8c7cb7
+      IsCorrect: 1
+    - Id: ceb1cd00-851e-4737-9f3f-f7ff67dee22a
+      IsCorrect: 0
+    - Id: b64f697e-6715-4244-9eb7-4787187af517
+      IsCorrect: 0
+    - Id: 0c16c25c-fa46-4554-9007-17e3c7c8455d
+      IsCorrect: 0
