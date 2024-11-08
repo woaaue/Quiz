@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2390803567891781452}
   - component: {fileID: 2679971842446913558}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NameTheme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,7 +417,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5639775785037843700}
+  - component: {fileID: 4745576057403640966}
   - component: {fileID: 7593503051086407123}
+  - component: {fileID: 310861524417621514}
   m_Layer: 5
   m_Name: LevelsPopup
   m_TagString: Untagged
@@ -445,6 +447,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &4745576057403640966
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801817659782789950}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &7593503051086407123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +471,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c16c1ec0eae6c14a853cad00b5dadb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 4745576057403640966}
+  <IsActiveNavigationPanel>k__BackingField: 1
+  _levelsContainer: {fileID: 2574292095498889315}
+  _themeName: {fileID: 2679971842446913558}
+--- !u!114 &310861524417621514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801817659782789950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
 --- !u!1 &6520888980479166903
 GameObject:
   m_ObjectHideFlags: 0

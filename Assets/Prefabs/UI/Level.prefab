@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4966596413043495675}
   - component: {fileID: 2742243119560457559}
+  - component: {fileID: 7823043901041455823}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -125,6 +126,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1ba37724393a448ab9d29535dcd0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _filledProgress: {fileID: 8875937445356888889}
+  _numberLevel: {fileID: 4937520036096861438}
+  <RectTransform>k__BackingField: {fileID: 4966596413043495675}
+--- !u!114 &7823043901041455823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468060985448285083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
 --- !u!1 &3949435804100039384
 GameObject:
   m_ObjectHideFlags: 0
