@@ -37,7 +37,7 @@ public sealed class PoolService : IPoolService
             _ when type == typeof(Theme) => _themePool.Get() as T,
             _ when type == typeof(LevelView) => _levelPool.Get() as T,
             _ when type == typeof(Purchase) => _purchasePool.Get() as T,
-            _ when type == typeof(LevelsView) => _levelsPool.Get() as T,
+            _ when type == typeof(RankLevelsView) => _levelsPool.Get() as T,
             _ when type == typeof(RankSelector) => _rankSelectorPool.Get() as T,
             _ => throw new ArgumentException($"Unsupported type: {type}")
         };
