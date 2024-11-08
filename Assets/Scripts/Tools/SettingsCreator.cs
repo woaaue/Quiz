@@ -151,14 +151,16 @@ public sealed class SettingsCreator : ScriptableObject
     {
         var localizationFile = new Dictionary<LanguageType, List<LocalizationItem>>(); 
         var path = Path.Combine(Application.streamingAssetsPath, PATH);
+        var languageTypes = Enum.GetValues(typeof(LanguageType)).Cast<LanguageType>();
+        var itemTypes = Enum.GetValues(typeof(LocalizationItemType)).Cast<LocalizationItemType>();
 
-        foreach(LanguageType type in Enum.GetValues(typeof(LanguageType)))
+        foreach (var type in languageTypes)
         {
             var languagePath = Path.Combine(path, type.ToString());
 
             var localizationItems = new List<LocalizationItem>();
 
-            foreach (LocalizationItemType itemType in Enum.GetValues(typeof(LocalizationItemType)))
+            foreach (var itemType in itemTypes)
             {
                 if (itemType == _createSetting.Type)
                 {

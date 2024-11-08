@@ -75,7 +75,9 @@ public sealed class UserData
 
     private void FillDefaultThemesRank()
     {
-        foreach (ThemeType themeType in Enum.GetValues(typeof(ThemeType)))
+        var themeTypes = Enum.GetValues(typeof(ThemeType)).Cast<ThemeType>();
+
+        foreach (var themeType in themeTypes)
         {
             var themeRank = new UserRankTheme
             {

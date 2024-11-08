@@ -4,6 +4,7 @@ using Zenject;
 using UnityEngine;
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using System.Linq;
 
 public sealed class NamePopup : Popup<NamePopupSettings>
 {
@@ -49,8 +50,9 @@ public sealed class NamePopup : Popup<NamePopupSettings>
     private void FillDropdown()
     {
         var dropdownOptions = new List<TMP_Dropdown.OptionData>();
+        var languageTypes = Enum.GetValues(typeof(LanguageType)).Cast<LanguageType>();
 
-        foreach (LanguageType languageType in Enum.GetValues(typeof(LanguageType)))
+        foreach (var languageType in languageTypes)
         {
             var optionData = new TMP_Dropdown.OptionData($"{LocalizationProvider.GetText(LocalizationItemType.UI, string.Format(DEFAULT_LANGUAGE_KEY, languageType.ToString().ToLower()))}");
 

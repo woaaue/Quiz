@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public sealed class ThemeManager : MonoBehaviour
 {
@@ -61,7 +62,9 @@ public sealed class ThemeManager : MonoBehaviour
         }
         else
         {
-            foreach (ThemeType themeType in Enum.GetValues(typeof(ThemeType)))
+            var themeTypes = Enum.GetValues(typeof(ThemeType)).Cast<ThemeType>();
+
+            foreach (var themeType in themeTypes)
             {
                 var element = _poolService.Get<Theme>();
 

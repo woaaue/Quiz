@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using System.Linq;
 
 public sealed class RankSelector : MonoBehaviour
 {
@@ -40,8 +41,9 @@ public sealed class RankSelector : MonoBehaviour
     private void FillDropdown()
     {
         var dropdownOptionsData = new List<TMP_Dropdown.OptionData>();
+        var rankTypes = Enum.GetValues(typeof(UserRankType)).Cast<UserRankType>();
 
-        foreach (UserRankType rankType in Enum.GetValues(typeof(UserRankType)))
+        foreach (var rankType in rankTypes)
         {
             var optionData = new TMP_Dropdown.OptionData($"{LocalizationProvider.GetText(LocalizationItemType.UI, string.Format(PATTERN_RANK_TYPE_LOCALIZATION_KEY, rankType.ToString().ToLower()))}");
             

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public sealed class ProgressThemeManager : MonoBehaviour
@@ -13,7 +14,9 @@ public sealed class ProgressThemeManager : MonoBehaviour
 
     private void InitProgress()
     {
-        foreach (ThemeType theme in Enum.GetValues(typeof(ThemeType)))
+        var themeTypes = Enum.GetValues(typeof(ThemeType)).Cast<ThemeType>();
+
+        foreach (var theme in themeTypes)
         {
             var prefabObject = Instantiate(_prefab, _container, false);
 

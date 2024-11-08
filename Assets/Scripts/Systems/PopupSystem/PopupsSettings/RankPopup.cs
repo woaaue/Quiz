@@ -1,6 +1,7 @@
 using System;
 using Zenject;
 using UnityEngine;
+using System.Linq;
 
 public sealed class RankPopup : Popup<RankPopupSettings>
 {
@@ -22,7 +23,9 @@ public sealed class RankPopup : Popup<RankPopupSettings>
 
     private void FillRankSelectors()
     {
-        foreach (ThemeType themeType in Enum.GetValues(typeof(ThemeType)))
+        var themeTypes = Enum.GetValues(typeof(ThemeType)).Cast<ThemeType>();
+
+        foreach (var themeType in themeTypes)
         {
             var rankSelectorPrefab = _poolService.Get<RankSelector>();
 

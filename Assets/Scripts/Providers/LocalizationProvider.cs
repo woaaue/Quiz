@@ -49,8 +49,10 @@ public static class LocalizationProvider
     {
         _localizationData = new Dictionary<LanguageType, LocalizationGroup>();
         var localizationPath = Path.Combine(Application.streamingAssetsPath, path);
+        var languageTypes = Enum.GetValues(typeof(LanguageType)).Cast<LanguageType>();
+        var itemTypes = Enum.GetValues(typeof(LocalizationItemType)).Cast<LocalizationItemType>();
 
-        foreach (LanguageType language in Enum.GetValues(typeof(LanguageType)))
+        foreach (var language in languageTypes)
         {
             var languagePath = Path.Combine(localizationPath, language.ToString());
 
@@ -60,8 +62,8 @@ public static class LocalizationProvider
             }
 
             var itemDictionary = new LocalizationGroup();
-
-            foreach (LocalizationItemType itemType in Enum.GetValues(typeof(LocalizationItemType)))
+            
+            foreach (var itemType in itemTypes)
             {
                 var itemPath = Path.Combine(languagePath, $"{itemType}{EXTENSION}");
 
