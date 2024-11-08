@@ -13,9 +13,22 @@ public sealed class Theme : MonoBehaviour
 
     public ThemeType Type { get; private set; }
 
-    [Inject] private UserInfo _userInfo;
-
     private bool _isFavourites;
+    private UserInfo _userInfo;
+    private PopupService _popupService;
+
+    [Inject]
+    public void Construct(UserInfo userInfo, PopupService popupService)
+    {
+        _userInfo = userInfo;
+        _popupService = popupService;
+    }
+
+    [UsedImplicitly]
+    public void ShowLevels()
+    {
+        _popupService.ShowLevelsPopup(Type);
+    }
 
     [UsedImplicitly]
     public void AddInFavourite()

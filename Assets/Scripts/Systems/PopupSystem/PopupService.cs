@@ -13,6 +13,11 @@ public sealed class PopupService : MonoBehaviour
         _popupController.AddPopup(new RankPopupSettings());
     }
 
+    public void ShowLevelsPopup(ThemeType theme)
+    {
+        _popupController.AddPopup(new LevelsPopupSettings(theme));
+    }
+
     public void HidePopups()
     {
         _popupController.HideAllPopups();
