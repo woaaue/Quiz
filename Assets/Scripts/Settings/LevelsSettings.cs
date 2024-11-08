@@ -12,13 +12,17 @@ public sealed class LevelsSettings : ScriptableObject
     {
         var counter = 0;
 
-        LevelsSetting.ForEach(levelSetting =>
+        foreach (var level in LevelsSetting) 
         {
-            if (string.IsNullOrEmpty(levelSetting.Id))
+            counter++;
+
+            if (string.IsNullOrEmpty(level.Id))
             {
-                levelSetting.SetIdAndNumber(++counter);
+                level.SetId();
             }
-        });
+
+            level.SetNumber(counter);
+        }
     }
 
 #endif 

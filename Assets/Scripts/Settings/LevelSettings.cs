@@ -17,11 +17,16 @@ public sealed class LevelSettings : ScriptableObject
 
 #if UNITY_EDITOR
 
-    public void SetIdAndNumber(int numberLevel)
+    public void SetId()
     {
-        Number = numberLevel;
         Id = Guid.NewGuid().ToString();
 
+        SaveAssets();
+    }
+
+    public void SetNumber(int numberLevel)
+    {
+        Number = numberLevel;
         SaveAssets();
     }
 

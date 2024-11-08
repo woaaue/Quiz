@@ -41,7 +41,7 @@ public sealed class SettingsCreator : ScriptableObject
         var themeSettings = _themesSettings.ThemeSettings.First(themeSetting => themeSetting.Type == _createSetting.Theme);
         var level = themeSettings.Levels.LevelsSetting.First(levelSettings => levelSettings.Number == _createSetting.Level);
 
-        if (CheckMacth(dataItems, out var dataId))
+        if (CheckMatch(dataItems, out var dataId))
         {
             level.SetQuestion(new QuestionSettings(dataId));
         }
@@ -59,7 +59,7 @@ public sealed class SettingsCreator : ScriptableObject
         var themeSettings = _themesSettings.ThemeSettings.First(themeSetting => themeSetting.Type == _createSetting.Theme);
         var level = themeSettings.Levels.LevelsSetting.First(levelSettings => levelSettings.Number == _createSetting.Level);
 
-        if (CheckMacth(dataItems, out var dataId))
+        if (CheckMatch(dataItems, out var dataId))
         {
             level.SetAnswer(new AnswerParameters
             {
@@ -88,7 +88,7 @@ public sealed class SettingsCreator : ScriptableObject
 
         var dataItems = GetLocalizationFile();
 
-        if (!CheckMacth(dataItems, out var dataId))
+        if (!CheckMatch(dataItems, out var dataId))
         {
             AddItem(dataItems);
             SaveLocalizationFile(dataItems);
@@ -120,7 +120,7 @@ public sealed class SettingsCreator : ScriptableObject
         }
     }
 
-    private bool CheckMacth(Dictionary<LanguageType, List<LocalizationItem>> dataItems, out string dataId)
+    private bool CheckMatch(Dictionary<LanguageType, List<LocalizationItem>> dataItems, out string dataId)
     {
         var languagesSettings = _createSetting.LanguageSettings;
 
