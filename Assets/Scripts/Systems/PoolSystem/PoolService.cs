@@ -59,6 +59,14 @@ public sealed class PoolService : IPoolService
                 _rankSelectorPool.Release(selector);
                 break;
 
+            case LevelView levelView:
+                _levelPool.Release(levelView);
+                break;
+
+            case RankLevelsView rankLevelsView:
+                _levelsPool.Release(rankLevelsView);
+                break;
+
             default:
                 throw new ArgumentException($"Unsupported type: {typeof(T)}");
         }

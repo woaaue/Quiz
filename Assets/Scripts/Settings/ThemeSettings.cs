@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Quiz/ThemeSettings", fileName = "ThemeSettings", order = 1)]
@@ -11,5 +13,10 @@ public sealed class ThemeSettings : ScriptableObject
     public int GetTotalCountStars()
     {
         return Levels.LevelsSetting.Count * COUNT_STARS;
+    }
+
+    public List<LevelSettings> GetLevelByRank(UserRankType userRankType)
+    {
+        return Levels.LevelsSetting.Where(levelSetting => levelSetting.LevelRank == userRankType).ToList();
     }
 }
