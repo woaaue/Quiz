@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using Zenject;
 using UnityEngine;
+using UnityEngine.UI;
+using JetBrains.Annotations;
 
-public class LevelView : MonoBehaviour
+public sealed class LevelView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Image _filledProgress;
+    [SerializeField] private TextMeshProUGUI _numberLevel;
+    [field: SerializeField] public RectTransform RectTransform { get; private set; }
+
+    private string _id;
+    private UserInfo _userInfo;
+
+    [Inject]
+    public void Construct(UserInfo userInfo)
     {
-        
+        _userInfo = userInfo;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Setup(string id, Vector2 position)
     {
-        
+        _id = id;
+        transform.localPosition = position;
+    }
+
+    [UsedImplicitly]
+    public void OpenLevel()
+    {
+
     }
 }
