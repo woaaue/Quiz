@@ -10,14 +10,13 @@ public sealed class PopupQueueController : MonoBehaviour
 
     private PopupSettings _settings;
     private PopupBase _currentPopup;
-    private Queue<PopupBase> _queuePopups;
+    private Queue<PopupWrapper> _queuePopups;
 
     public void AddPopup<T>(T settings) where T : PopupBaseSettings
     {
         var popupPrefab = _settings.Get<T>();
 
-        popupPrefab.Setup(settings);
-        _queuePopups.Enqueue(popupPrefab);
+        _queuePopups.Enqueue(new PopupWrapper(popupPrefab, settings));
 
         if (_queuePopups.Count == 1)
         {
@@ -41,9 +40,9 @@ public sealed class PopupQueueController : MonoBehaviour
             _background.SetActive(true);
         }
         
-        var popupPrefab = _queuePopups.Peek();
+        var popupWrapper = _queuePopups.Peek();
 
-        if (popupPrefab.IsActiveNavigationPanel)
+        if (popupWrapper.PopupPrefab.IsActiveNavigationPanel)
         {
             transform.SetSiblingIndex(POSITION_OFFSET_WITH_NAV_PANEL);
         }
@@ -52,8 +51,8 @@ public sealed class PopupQueueController : MonoBehaviour
             transform.SetAsLastSibling();
         }
 
-        _currentPopup = Instantiate(popupPrefab, _container, false);
-
+        _currentPopup = Instantiate(popupWrapper.PopupPrefab, _container, false);
+        _currentPopup.Setup(popupWrapper.PopupSettings);
         _currentPopup.PopupClosed += HidePopup;
     }
 
@@ -79,7 +78,19 @@ public sealed class PopupQueueController : MonoBehaviour
 
     private void Awake()
     {
-        _queuePopups = new Queue<PopupBase>();
+        _queuePopups = new Queue<PopupWrapper>();
         _settings = SettingsProvider.Get<PopupSettings>();
+    }
+}
+
+public sealed class PopupWrapper
+{
+    public readonly PopupBase PopupPrefab;
+    public readonly PopupBaseSettings PopupSettings;
+
+    public PopupWrapper(PopupBase popupBase, PopupBaseSettings popupBaseSettings)
+    {
+        PopupPrefab = popupBase;
+        PopupSettings = popupBaseSettings;
     }
 }

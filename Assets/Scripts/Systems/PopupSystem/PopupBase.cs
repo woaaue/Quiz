@@ -12,6 +12,11 @@ public class PopupBase : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [field: SerializeField] public bool IsActiveNavigationPanel { get; private set; }
 
+    public virtual void Setup(PopupBaseSettings settings)
+    {
+        
+    }
+
     [UsedImplicitly]
     public virtual void Close()
     {
