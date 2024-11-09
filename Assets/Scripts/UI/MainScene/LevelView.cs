@@ -19,6 +19,11 @@ public sealed class LevelView : MonoBehaviour
         _userInfo = userInfo;
     }
 
+    public void Setup(string id)
+    {
+        _id = id;
+    }
+
     public void Setup(string id, Vector2 position)
     {
         _id = id;
