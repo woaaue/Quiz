@@ -9,20 +9,30 @@ public sealed class LevelsPopup : Popup<LevelsPopupSettings>
     [SerializeField] private Transform _levelsContainer;
     [SerializeField] private TextMeshProUGUI _themeName;
 
-    private PoolService _poolService;
     private ThemeType _levelsTheme;
+    private PoolService _poolService;
 
     [Inject]
     public void Construct(PoolService poolService)
     {
         _poolService = poolService;
-
-        FillContent();
     }
 
     public override void Setup(LevelsPopupSettings settings)
     {
         _levelsTheme = settings.CurrentTheme;
+        base.Setup(settings);
+
+        FillContent();
+
+        if (_levelsTheme == ThemeType.CSharp)
+        {
+            _themeName.text = "C#";
+        }
+        else
+        {
+            _themeName.text = _levelsTheme.ToString();
+        }
     }
 
     private void FillContent()
