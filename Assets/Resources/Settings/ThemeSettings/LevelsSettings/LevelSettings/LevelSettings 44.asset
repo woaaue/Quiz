@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f9cee2eabf2c148b827943fafd1ffa, type: 3}
+  m_Name: LevelSettings 44
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: cb024607-84b7-4ec5-a931-891ca56b75a6
+  <Number>k__BackingField: 14
+  <LevelRank>k__BackingField: 3
+  <QuestionsSettings>k__BackingField:
+  - Id: ba616e59-5408-46e4-8f7d-55e28d42ef71
+    AnswersSettings:
+    - Id: 91d6c1ff-9e65-4dc4-9dfb-f5c0c178a74d
+      IsCorrect: 1
+    - Id: 23b877cd-4b0e-460b-b022-0b3370b69764
+      IsCorrect: 0
+    - Id: ce01f925-0b64-42f2-b4c7-be91a1bf0e04
+      IsCorrect: 0
+    - Id: 2a351d1b-4d38-45e0-981e-7d0a77033f1d
+      IsCorrect: 0
+  - Id: 07fe4663-904e-41d9-a8e8-21dea5511309
+    AnswersSettings:
+    - Id: 47955322-30d4-461c-a79a-37a7bbfb2b39
+      IsCorrect: 1
+    - Id: 0a58e00e-e657-414c-bf65-3c35e62b6d9d
+      IsCorrect: 0
+    - Id: b5ea3d8a-18f5-468b-b364-dd7e0b5477df
+      IsCorrect: 0
+    - Id: da45e3b8-46f8-4f9c-ac16-dff4075a4d9c
+      IsCorrect: 0
+  - Id: da8a46c3-a0e6-43b6-a4bd-935a5b53a195
+    AnswersSettings:
+    - Id: fcb9c8fe-c368-48e3-ab08-eb870f02cb44
+      IsCorrect: 1
+    - Id: 8857586e-12f8-48f0-948a-bda42e4a367f
+      IsCorrect: 0
+    - Id: fb2562b8-d4aa-43a4-853b-cb0d51a92c9a
+      IsCorrect: 0
+    - Id: 231cda1b-1ae5-47ac-9e75-5b73f79c1061
+      IsCorrect: 0
+  - Id: b686b9f3-e5d7-4dda-adb0-bbc4d1ba2101
+    AnswersSettings:
+    - Id: 177f5723-0afc-428f-bbaf-3f54fd3967c9
+      IsCorrect: 1
+    - Id: bc64de63-9843-4368-be5a-43585ae7250c
+      IsCorrect: 0
+    - Id: 9f6fc404-b8a3-4b0b-8142-ca1d3d40a770
+      IsCorrect: 0
+    - Id: 4b9bd4f2-40d6-4830-b858-169605b1dff1
+      IsCorrect: 0
+  - Id: 07d23611-bf7f-45ad-9e62-c8dfc904661f
+    AnswersSettings:
+    - Id: 0c9db91b-adc9-4431-a913-69b2b9e7ec05
+      IsCorrect: 1
+    - Id: cdf1ea01-4697-44b9-a26b-12ba2a7ccafc
+      IsCorrect: 0
+    - Id: b5ea3d8a-18f5-468b-b364-dd7e0b5477df
+      IsCorrect: 0
+    - Id: cb48dde7-0611-4b94-9423-4170f11d5a3f
+      IsCorrect: 0
