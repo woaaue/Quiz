@@ -112,6 +112,18 @@ public sealed class UserProgress
             .Sum(progress => progress.CountStars);
     }
 
+    public int GetCountStarsLevel(string id)
+    {
+        var level = Progresses.FirstOrDefault(progress => progress.Id == id);
+
+        if (level != null)
+        {
+            return level.CountStars;
+        }
+
+        return default;
+    }
+
     public sealed class LevelProgress
     {
         public ThemeType ThemeType;
