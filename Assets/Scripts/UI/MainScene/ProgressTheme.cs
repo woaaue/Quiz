@@ -2,6 +2,7 @@ using TMPro;
 using Zenject;
 using UnityEngine;
 using UnityEngine.UI;
+using JetBrains.Annotations;
 
 public sealed class ProgressTheme : MonoBehaviour
 {
@@ -10,11 +11,24 @@ public sealed class ProgressTheme : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _themeName;
     [SerializeField] private TextMeshProUGUI _progressValue;
 
-    [Inject] private UserInfo _userInfo;
-
     private bool _isSetup;
     private ThemeType _type;
+    private UserInfo _userInfo;
+    private PopupService _popupService;
     private ThemeSettings _themesSettings;
+
+    [Inject]
+    public void Construct(UserInfo userInfo, PopupService popupService)
+    {
+        _userInfo = userInfo;
+        _popupService = popupService;
+    }
+
+    [UsedImplicitly]
+    public void Click()
+    {
+        _popupService.ShowLevelsPopup(_type);
+    }
 
     public void Setup(ThemeType themeType)
     {
