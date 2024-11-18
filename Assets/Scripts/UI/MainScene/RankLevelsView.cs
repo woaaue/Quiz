@@ -15,12 +15,6 @@ public sealed class RankLevelsView : MonoBehaviour
     private PoolService _poolService;
     private UserRankType _rankLevelType;
 
-    private float _offsetX;
-    private bool _isNegativeDirection;
-    private int _currentNumberElements;
-    private Vector2 _lastObjectPosition;
-    private int _numberElementsFitInLine;
-
     [Inject]
     public void Construct(PoolService poolService)
     {
@@ -43,14 +37,14 @@ public sealed class RankLevelsView : MonoBehaviour
 
     private void FillContent()
     {
-        var levelsForRank = SettingsProvider.Get<ThemesSettings>().GetThemeSettings(_themeType).GetLevelByRank(_rankLevelType);
+        var levelsForRank = SettingsProvider.Get<ThemesSettings>().GetThemeSettings(_themeType).GetLevelsByRank(_rankLevelType);
 
         foreach (var level in levelsForRank) 
         {
             var levelObject = _poolService.Get<LevelView>();
             levelObject.transform.SetParent(_levelContainer, false);
             
-            levelObject.Setup(level.Id);
+            levelObject.Setup(level, _themeType);
         }
     }
 }
