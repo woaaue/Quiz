@@ -1,16 +1,25 @@
 using TMPro;
 using Zenject;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using JetBrains.Annotations;
 
 public sealed class LevelView : MonoBehaviour
 {
+    private const int DEFAULT_MAX_COUNT_STARS = 3;
+    private const string PATTERN_TEXT_LEVEL = "{0} {1}";
+    private const string PATTERN_VALUE_PROGRESS = "{0} / {1}";
+    private const string LEVEL_TEXT_LOCALIZATION_KEY = "level_text";
+
+    [SerializeField] private GameObject _locker;
     [SerializeField] private Image _filledProgress;
     [SerializeField] private TextMeshProUGUI _numberLevel;
+    [SerializeField] private TextMeshProUGUI _progressStars;
 
-    private string _id;
     private UserInfo _userInfo;
+    private ThemeType _themeType;
+    private LevelSettings _levelSettings;
 
     [Inject]
     public void Construct(UserInfo userInfo)
@@ -18,14 +27,31 @@ public sealed class LevelView : MonoBehaviour
         _userInfo = userInfo;
     }
 
-    public void Setup(string id)
+    public void Setup(LevelSettings levelSettings, ThemeType themetype)
     {
-        _id = id;
+        _levelSettings = levelSettings;
+        _themeType = themetype;
+
+        FillUserProgress();
     }
 
     [UsedImplicitly]
     public void OpenLevel()
     {
 
+    }
+
+    private void FillUserProgress()
+    {
+        if (_userInfo.UserData.RankThemes.First(rankTheme => rankTheme.TypeTheme == _themeType).Rank < _levelSettings.LevelRank)
+        {
+            _locker.SetActive(true);
+        }
+
+        var count = _userInfo.UserProgress.GetCountStarsLevel(_levelSettings.Id);
+
+        _filledProgress.fillAmount = count / DEFAULT_MAX_COUNT_STARS;
+        _progressStars.text = string.Format(PATTERN_VALUE_PROGRESS, count, DEFAULT_MAX_COUNT_STARS);
+        _numberLevel.text = string.Format(PATTERN_TEXT_LEVEL, LocalizationProvider.GetText(LocalizationItemType.UI, LEVEL_TEXT_LOCALIZATION_KEY), _levelSettings.Number);
     }
 }
