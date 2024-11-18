@@ -1,3 +1,4 @@
+using Zenject;
 using UnityEngine;
 using JetBrains.Annotations;
 
@@ -8,12 +9,21 @@ public sealed class ScreenController : MonoBehaviour
     private bool _isSwitching;
     private Screen _currentScreen;
     private Screen _previousScreen;
+    private PopupService _popupService;
+
+    [Inject]
+    public void Construct(PopupService popupService)
+    {
+        _popupService = popupService;
+    }
 
     [UsedImplicitly]
     public void SwitchScreen(Screen newScreen)
     {
         if (_isSwitching)
             return;
+
+        _popupService.HidePopups();
 
         if (_currentScreen != newScreen)
         {

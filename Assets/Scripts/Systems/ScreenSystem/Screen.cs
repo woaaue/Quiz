@@ -1,5 +1,4 @@
 using System;
-using Zenject;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,19 +9,10 @@ public abstract class Screen : MonoBehaviour, IWindow
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private RectTransform _buttonRectTransform;
 
-    private PopupService _popupService;
-
     private Vector2 _targetPosition = Vector2.zero;
-
-    [Inject]
-    public void Construct(PopupService popupService)
-    {
-        _popupService = popupService;
-    }
 
     public void Show(Action callback)
     {
-        _popupService.HidePopups();
         gameObject.SetActive(true);
         ShowAnimation(callback);
     }
