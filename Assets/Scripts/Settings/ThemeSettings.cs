@@ -15,7 +15,7 @@ public sealed class ThemeSettings : ScriptableObject
         return Levels.LevelsSetting.Count * COUNT_STARS;
     }
 
-    public List<LevelSettings> GetLevelByRank(UserRankType userRankType)
+    public List<LevelSettings> GetLevelsByRank(UserRankType userRankType)
     {
         return Levels.LevelsSetting.Where(levelSetting => levelSetting.LevelRank == userRankType).ToList();
     }
