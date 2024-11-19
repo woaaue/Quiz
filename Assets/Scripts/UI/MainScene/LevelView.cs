@@ -19,12 +19,14 @@ public sealed class LevelView : MonoBehaviour
 
     private UserInfo _userInfo;
     private ThemeType _themeType;
+    private PopupService _popupService;
     private LevelSettings _levelSettings;
 
     [Inject]
-    public void Construct(UserInfo userInfo)
+    public void Construct(UserInfo userInfo, PopupService popupService)
     {
         _userInfo = userInfo;
+        _popupService = popupService;
     }
 
     public void Setup(LevelSettings levelSettings, ThemeType themetype)
@@ -38,7 +40,8 @@ public sealed class LevelView : MonoBehaviour
     [UsedImplicitly]
     public void OpenLevel()
     {
-
+        _popupService.ShowGamePopup(_levelSettings);
+        _popupService.HideCurrentPopup();
     }
 
     private void FillUserProgress()
