@@ -33,6 +33,14 @@ public sealed class PopupQueueController : MonoBehaviour
         }
     }
 
+    public void HideCurrentPopup()
+    {
+        if (_queuePopups.Count > 0)
+        {
+            _currentPopup.Close();
+        }
+    }
+
     private void ShowPopup()
     {
         if (!_background.activeInHierarchy)

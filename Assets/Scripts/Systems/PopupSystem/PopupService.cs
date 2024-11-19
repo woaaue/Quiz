@@ -18,6 +18,16 @@ public sealed class PopupService : MonoBehaviour
         _popupController.AddPopup(new LevelsPopupSettings(theme));
     }
 
+    public void ShowGamePopup(LevelSettings levelSettings)
+    {
+        _popupController.AddPopup(new GamePopupSettings(levelSettings));
+    }
+
+    public void HideCurrentPopup()
+    {
+        _popupController.HideCurrentPopup();
+    }
+
     public void HidePopups()
     {
         _popupController.HideAllPopups();
