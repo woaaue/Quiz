@@ -41,7 +41,7 @@ public static class LocalizationProvider
     private static string GetLocalizedTextByKey(LanguageType language, LocalizationItemType itemType, string key)
     {
         var localizationGroup = _localizationData[language];
-
+        
         return localizationGroup[itemType].FirstOrDefault(item => item.Key == key).Text;
     }
 

@@ -15,6 +15,11 @@ public sealed class LevelSettings : ScriptableObject
     [field: SerializeField] public UserRankType LevelRank { get; private set; }
     [field: SerializeField] public List<QuestionSettings> QuestionsSettings { get; private set; }
 
+    public int GetMaxCountQuestions()
+    {
+        return COUNT_QUESTIONS;
+    }
+
 #if UNITY_EDITOR
 
     public void SetId()
@@ -27,6 +32,7 @@ public sealed class LevelSettings : ScriptableObject
     public void SetNumber(int numberLevel)
     {
         Number = numberLevel;
+
         SaveAssets();
     }
 
