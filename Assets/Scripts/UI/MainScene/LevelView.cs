@@ -53,7 +53,7 @@ public sealed class LevelView : MonoBehaviour
 
         var count = _userInfo.UserProgress.GetCountStarsLevel(_levelSettings.Id);
 
-        _filledProgress.fillAmount = count / DEFAULT_MAX_COUNT_STARS;
+        _filledProgress.fillAmount = (float)count / DEFAULT_MAX_COUNT_STARS;
         _progressStars.text = string.Format(PATTERN_VALUE_PROGRESS, count, DEFAULT_MAX_COUNT_STARS);
         _numberLevel.text = string.Format(PATTERN_TEXT_LEVEL, LocalizationProvider.GetText(LocalizationItemType.UI, LEVEL_TEXT_LOCALIZATION_KEY), _levelSettings.Number);
     }
