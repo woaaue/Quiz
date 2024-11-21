@@ -124,6 +124,23 @@ public sealed class UserProgress
         return default;
     }
 
+    public void AddLevel(LevelProgress levelProgress)
+    {
+        var levelData = Progresses.FirstOrDefault(level => level.Id == levelProgress.Id);
+
+        if (levelData != null)
+        {
+            if (levelData.CountStars < levelProgress.CountStars)
+            {
+                levelData.CountStars = levelProgress.CountStars;
+            }
+        }
+        else
+        {
+            Progresses.Add(levelProgress);
+        }
+    }
+
     public sealed class LevelProgress
     {
         public ThemeType ThemeType;
