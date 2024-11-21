@@ -1,5 +1,7 @@
 using TMPro;
+using System;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public sealed class GameManager : MonoBehaviour
@@ -11,6 +13,8 @@ public sealed class GameManager : MonoBehaviour
     [SerializeField] private QuestionView _questionView;
     [SerializeField] private List<AnswerView> _answersView;
     [SerializeField] private GameObject _raycastTargetObject;
+
+    public event Action<string, int> GameEnded;
 
     private int _currentQuestion;
     private int _maxQuestionCount;
@@ -28,28 +32,28 @@ public sealed class GameManager : MonoBehaviour
         _raycastTargetObject.SetActive(false);
     }
 
-    //private void Start()
-    //{
-    //    foreach (var answer in _answersView)
-    //    {
-            
-    //    }
-    //}
+    private void Start()
+    {
+        foreach (var answer in _answersView)
+        {
+            answer.Selected += OnSelectedAnswer;
+        }
+    }
 
-    //private void OnDestroy()
-    //{
-    //    foreach (var answer in _answersView)
-    //    {
-
-    //    }
-    //}
+    private void OnDestroy()
+    {
+       foreach (var answer in _answersView)
+       {
+            answer.Selected -= OnSelectedAnswer;
+       }
+    }
 
     private void FilledQuestionSettings()
     {
         if (_currentQuestion < _maxQuestionCount)
         {
             var counter = 0;
-            _currentQuestion += 1;
+
             _questionView.SetQuestion(_levelSettings.QuestionsSettings[_currentQuestion].Id);
 
             foreach (var answer in _answersView)
@@ -58,6 +62,7 @@ public sealed class GameManager : MonoBehaviour
                 counter++;
             }
 
+            _currentQuestion += 1;
             _progress.text = string.Format(PATTERN_PROGRESS, _progressLocalization, _currentQuestion, _maxQuestionCount);
         }
     }
@@ -69,6 +74,28 @@ public sealed class GameManager : MonoBehaviour
             _countCorrectAnswers += 1;
         }
 
+        StartCoroutine(LatencyRoutine());
+    }
+
+    private IEnumerator LatencyRoutine()
+    {
         _raycastTargetObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(1f);
+
+        if (_currentQuestion < _maxQuestionCount)
+        {
+            FilledQuestionSettings();
+        }
+        else
+        {
+            GameEnded?.Invoke(_levelSettings.Id, _countCorrectAnswers);
+
+            yield break;
+        }
+
+        _raycastTargetObject.SetActive(false);
+
+        yield break;
     }
 }
