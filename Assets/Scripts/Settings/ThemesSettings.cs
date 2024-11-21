@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(menuName = "Quiz/ThemesSettings", fileName = "ThemesSettings", order = 1)]
 public sealed class ThemesSettings : ScriptableObject
@@ -12,6 +13,22 @@ public sealed class ThemesSettings : ScriptableObject
     {
         return ThemeSettings
             .First(themeSetting => themeSetting.Type == themeType);
+    }
+
+    public ThemeType GetThemeTypeForIdLevel(string id)
+    {
+        foreach (var themeSettings in ThemeSettings) 
+        {
+            foreach (var level in themeSettings.Levels.LevelsSetting)
+            {
+                if (level.Id == id)
+                {
+                    return themeSettings.Type;
+                }
+            }
+        }
+
+        throw new Exception($"There is no such level {id}");
     }
 
 #if UNITY_EDITOR
