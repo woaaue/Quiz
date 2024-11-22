@@ -100,6 +100,8 @@ public sealed class UserProgress
 {
     [field: SerializeField] public List<LevelProgress> Progresses { get; private set; }
 
+    public event Action<ThemeType> ProgressThemeChanged;
+
     public UserProgress()
     {
         Progresses = new List<LevelProgress>();
@@ -133,11 +135,15 @@ public sealed class UserProgress
             if (levelData.CountStars < levelProgress.CountStars)
             {
                 levelData.CountStars = levelProgress.CountStars;
+
+                ProgressThemeChanged?.Invoke(levelProgress.ThemeType);
             }
         }
         else
         {
             Progresses.Add(levelProgress);
+
+            ProgressThemeChanged?.Invoke(levelProgress.ThemeType);
         }
     }
 
