@@ -22,6 +22,8 @@ public sealed class ProgressTheme : MonoBehaviour
     {
         _userInfo = userInfo;
         _popupService = popupService;
+
+        _userInfo.UserProgress.ProgressThemeChanged += OnProgressThemeChanged;
     }
 
     [UsedImplicitly]
@@ -46,12 +48,25 @@ public sealed class ProgressTheme : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        _userInfo.UserProgress.ProgressThemeChanged -= OnProgressThemeChanged;
+    }
+
     private void UpdateView()
     {
         var totalCountStars = _themesSettings.GetTotalCountStars();
         var complete = _userInfo.UserProgress.GetStarsForTheme(_type);
         _progressValue.text = $"{complete}/{totalCountStars}";
-        _fillImage.fillAmount = complete / totalCountStars;
+        _fillImage.fillAmount = (float)complete / totalCountStars;
+    }
+
+    private void OnProgressThemeChanged(ThemeType themeType)
+    {
+        if (themeType == _type)
+        {
+            UpdateView();
+        }
     }
 
     private void SetView()
