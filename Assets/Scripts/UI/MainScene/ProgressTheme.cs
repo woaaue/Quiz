@@ -38,6 +38,8 @@ public sealed class ProgressTheme : MonoBehaviour
         _themesSettings = SettingsProvider.Get<ThemesSettings>().GetThemeSettings(_type);
 
         SetView();
+
+        _isSetup = true;
     }
 
     private void OnEnable()
@@ -48,7 +50,7 @@ public sealed class ProgressTheme : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _userInfo.UserProgress.ProgressThemeChanged -= OnProgressThemeChanged;
     }
@@ -81,7 +83,6 @@ public sealed class ProgressTheme : MonoBehaviour
         }
 
         _themeImage.sprite = SettingsProvider.Get<SpriteSettings>().GetThemeSprite(_type);
-        _isSetup = true;
 
         UpdateView();
     }
