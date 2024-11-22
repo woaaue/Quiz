@@ -2,6 +2,7 @@ using TMPro;
 using System;
 using UnityEngine;
 using System.Collections;
+using Random = System.Random;
 using System.Collections.Generic;
 
 public sealed class GameManager : MonoBehaviour
@@ -42,10 +43,10 @@ public sealed class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-       foreach (var answer in _answersView)
-       {
+        foreach (var answer in _answersView)
+        {
             answer.Selected -= OnSelectedAnswer;
-       }
+        }
     }
 
     private void FilledQuestionSettings()
@@ -54,6 +55,7 @@ public sealed class GameManager : MonoBehaviour
         {
             var counter = 0;
 
+            ShuffleListButtons();
             _questionView.SetQuestion(_levelSettings.QuestionsSettings[_currentQuestion].Id);
 
             foreach (var answer in _answersView)
@@ -97,5 +99,24 @@ public sealed class GameManager : MonoBehaviour
         _raycastTargetObject.SetActive(false);
 
         yield break;
+    }
+
+    private void ShuffleListButtons()
+    {
+        var random = new Random();
+        var count = _answersView.Count;
+
+        for (int i = count - 1; i > 0; i--)
+        {
+            int randomIndex;
+
+            do
+            {
+                randomIndex = random.Next(0, count);
+            } 
+            while (randomIndex == i);
+
+            (_answersView[i], _answersView[randomIndex]) = (_answersView[randomIndex], _answersView[i]);
+        }
     }
 }
