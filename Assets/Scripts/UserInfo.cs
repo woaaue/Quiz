@@ -73,6 +73,16 @@ public sealed class UserData
         RankThemes.First(rankTheme => rankTheme.TypeTheme == themeType).Rank = userRankType;
     }
 
+    public void IncreaseRankTheme(ThemeType themeType)
+    {
+        var rankTheme = RankThemes.First(rankTheme => rankTheme.TypeTheme == themeType);
+
+        if (rankTheme.Rank != UserRankType.Senior)
+        {
+            rankTheme.Rank++;
+        }
+    }
+
     private void FillDefaultThemesRank()
     {
         var themeTypes = Enum.GetValues(typeof(ThemeType)).Cast<ThemeType>();
