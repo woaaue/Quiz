@@ -9,6 +9,8 @@ public sealed class LevelSettings : ScriptableObject
 {
     private const int COUNT_ANSWERS = 4;
     private const int COUNT_QUESTIONS = 5;
+    private const int REVIEW_LEVEL_INTERVAL = 4;
+    private const int REQUIRED_COUNT_STARS_FOR_OPEN_REVIEW_LEVEL = 7;
 
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] public int Number { get; private set; }
@@ -18,6 +20,31 @@ public sealed class LevelSettings : ScriptableObject
     public int GetMaxCountQuestions()
     {
         return COUNT_QUESTIONS;
+    }
+
+    public bool CheckReviewLevel()
+    {
+        return Number % REVIEW_LEVEL_INTERVAL == 0;
+    }
+
+    public List<QuestionSettings> GetQuestions() 
+    {
+        return QuestionsSettings;
+    }
+
+    public int GetNumberReviewLevelInterval()
+    {
+        return REVIEW_LEVEL_INTERVAL;
+    }
+
+    public void SetQuestions(List<QuestionSettings> questionSettings)
+    {
+        QuestionsSettings = questionSettings;
+    }
+
+    public int GetRequiredCountStars()
+    {
+        return REQUIRED_COUNT_STARS_FOR_OPEN_REVIEW_LEVEL;
     }
 
 #if UNITY_EDITOR

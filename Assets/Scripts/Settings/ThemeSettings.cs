@@ -10,6 +10,11 @@ public sealed class ThemeSettings : ScriptableObject
     [field: SerializeField] public ThemeType Type { get; private set; }
     [field: SerializeField] public LevelsSettings Levels { get; private set; }
 
+    public LevelSettings GetLevelForNumber(int number)
+    {
+        return Levels.LevelsSetting[number - 1];
+    }
+
     public LevelSettings GetLevelForId(string id)
     {
         return Levels.LevelsSetting.First(levelSetting => levelSetting.Id == id);
@@ -28,5 +33,17 @@ public sealed class ThemeSettings : ScriptableObject
     public List<LevelSettings> GetLevelsByRank(UserRankType userRankType)
     {
         return Levels.LevelsSetting.Where(levelSetting => levelSetting.LevelRank == userRankType).ToList();
+    }
+
+    public bool CheckLastLevelInRank(string id)
+    {
+        var levels = GetLevelsByRank(GetLevelForId(id).LevelRank);
+
+        if (levels.Last().Id == id)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
