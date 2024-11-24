@@ -1,7 +1,10 @@
 using TMPro;
 using Zenject;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
+using System.Collections.Generic;
 
 public sealed class RankLevelsView : MonoBehaviour
 {
@@ -48,10 +51,41 @@ public sealed class RankLevelsView : MonoBehaviour
         {
             var levelObject = _poolService.Get<LevelView>();
             levelObject.transform.SetParent(_levelContainer, false);
-            
-            levelObject.Setup(level, _themeType);
+
+            if (level.CheckReviewLevel())
+            {
+                var reviewLevel = level;
+                var countStarsPreviousLevels = 0;
+                var levelIndex = levelsForRank.IndexOf(level);
+                var previousQuestions = new List<QuestionSettings>();
+
+                for (int i = levelIndex - 1; i >= levelIndex - 3; i--)
+                {
+                    var previousLevel = levelsForRank[i];
+                    countStarsPreviousLevels += _userInfo.UserProgress.GetCountStarsLevel(previousLevel.Id);
+
+                    previousQuestions.AddRange(previousLevel.GetQuestions());
+                }
+
+                reviewLevel.SetQuestions(SetQuestionsSettings(previousQuestions, reviewLevel.GetMaxCountQuestions()));
+                levelObject.Setup(reviewLevel, _themeType, countStarsPreviousLevels);
+            }
+            else
+            {
+                levelObject.Setup(level, _themeType);
+            }
 
             countStarsLevels += _userInfo.UserProgress.GetCountStarsLevel(level.Id);
+
+            List<QuestionSettings> SetQuestionsSettings(List<QuestionSettings> previousQuestions, int count)
+            {
+                var random = new Random();
+
+                return previousQuestions
+                    .OrderBy(_ => random.Next())
+                    .Take(count)
+                    .ToList();
+            }
         }
 
         if (countStarsLevels != 0) 
