@@ -19,6 +19,7 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
     [SerializeField] private TextMeshProUGUI _countCorrectAnswersValue;
     [SerializeField] private GameObject _levelsButton;
     [SerializeField] private GameObject _playAgainButton;
+    [SerializeField] private MoneyReward _moneyRewardService;
 
     private int _countStars;
     private int _countReceivedMoney;
@@ -46,9 +47,15 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
         _themeType = _themesSettings.GetThemeTypeForIdLevel(settings.LevelId);
 
         FillView();
-        _userInfo.UserData.IncreaseValue(_countReceivedMoney);
+        _moneyRewardService.GetReward(_countReceivedMoney);
         FillLevelProgress(settings.LevelId);
         _userInfo.UserProgress.AddLevel(_levelProgress);
+
+        if (_countStars > 0 && _themesSettings.GetThemeSettings(_themeType).CheckLastLevelInRank(_levelProgress.Id))
+        {
+            _userInfo.UserData.IncreaseRankTheme(_themeType);
+        }
+
         base.Setup(settings);
     }
 
@@ -56,14 +63,14 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
     public void PlayAgain()
     {
         _popupService.ShowGamePopup(_themesSettings.ThemeSettings[(int)_themeType].GetLevelForId(_levelProgress.Id));
-        Close();
+        _popupService.HideCurrentPopup();
     }
 
     [UsedImplicitly]
     public void Levels()
     {
         _popupService.ShowLevelsPopup(_themeType);
-        Close();
+        _popupService.HideCurrentPopup();
     }
 
     private void FillView()
