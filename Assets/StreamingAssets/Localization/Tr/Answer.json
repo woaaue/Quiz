@@ -288,6 +288,10 @@
     "Text": "HashMap<string, int> dict = new HashMap<string, int>();"
   },
   {
+    "Key": "0c19140d-2102-4010-9acc-9b0d2db492a9",
+    "Text": "Map<string, int> dict = new Map<string, int>();"
+  },
+  {
     "Key": "21d5d372-f2f9-4348-936f-9612d836f69d",
     "Text": "Add()"
   },
@@ -892,6 +896,10 @@
     "Text": "pop()"
   },
   {
+    "Key": "b4fe8c3c-f2d0-43cc-acce-6edf2d6893b9",
+    "Text": "shift()"
+  },
+  {
     "Key": "584ce52e-9a96-4452-997e-3e55c6e2d933",
     "Text": "complex"
   },
@@ -1106,6 +1114,10 @@
   {
     "Key": "cee2fc4a-081d-42c0-9eef-ced19bc9285e",
     "Text": "endswith()"
+  },
+  {
+    "Key": "74cb54db-c1fc-42c1-8e0d-8794a4d3e6ae",
+    "Text": "ends()"
   },
   {
     "Key": "0f98a366-882f-4bb3-b58d-931213fe090a",
@@ -2252,6 +2264,10 @@
     "Text": "CONSTANT WITH"
   },
   {
+    "Key": "20614753-22a0-47f6-96e9-b5efdc8f79fd",
+    "Text": "TEMPORARY"
+  },
+  {
     "Key": "9f4ee886-dfe1-4455-b848-6b5f2df8ba3b",
     "Text": "TRANSIENT"
   },
@@ -2458,6 +2474,10 @@
   {
     "Key": "87896fdf-a3db-4130-8745-5b7eb5d54f26",
     "Text": "MERGE INSERT"
+  },
+  {
+    "Key": "fe410daf-20b4-45b6-b339-9a7c1f892507",
+    "Text": "SHARDING"
   },
   {
     "Key": "6a938e96-4fdf-4f2d-a74c-767a13168553",
@@ -2822,6 +2842,10 @@
   {
     "Key": "7cfd992a-c5ac-49ba-8a75-71257cd01046",
     "Text": "pop_array"
+  },
+  {
+    "Key": "b3c224bb-fb65-49b7-8c40-6d6e70980cae",
+    "Text": "remove_last"
   },
   {
     "Key": "0b2f0777-2cfd-4c58-ab52-ef69293b78c1",
