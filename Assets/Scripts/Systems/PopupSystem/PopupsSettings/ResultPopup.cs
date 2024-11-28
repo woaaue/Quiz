@@ -21,6 +21,7 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
     [SerializeField] private GameObject _playAgainButton;
     [SerializeField] private MoneyReward _moneyRewardService;
 
+    private bool _isPressed;
     private int _countStars;
     private int _countReceivedMoney;
     private int _countCorrectAnswers;
@@ -62,15 +63,23 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
     [UsedImplicitly]
     public void PlayAgain()
     {
-        _popupService.ShowGamePopup(_themesSettings.ThemeSettings[(int)_themeType].GetLevelForId(_levelProgress.Id));
-        _popupService.HideCurrentPopup();
+        if (!_isPressed)
+        {
+            _isPressed = true;
+            _popupService.ShowGamePopup(_themesSettings.ThemeSettings[(int)_themeType].GetLevelForId(_levelProgress.Id));
+            _popupService.HideCurrentPopup();
+        }
     }
 
     [UsedImplicitly]
     public void Levels()
     {
-        _popupService.ShowLevelsPopup(_themeType);
-        _popupService.HideCurrentPopup();
+        if (!_isPressed)
+        {
+            _isPressed = true;
+            _popupService.ShowLevelsPopup(_themeType);
+            _popupService.HideCurrentPopup();
+        }
     }
 
     private void FillView()
@@ -82,7 +91,7 @@ public sealed class ResultPopup : Popup<ResultPopupSettings>
         else
         {
             _result.text = LocalizationProvider.GetText(LocalizationItemType.UI, LOCALIZATION_KEY_WIN);
-            
+
         }
 
         _countStarsValue.text = $"+{_countStars}";

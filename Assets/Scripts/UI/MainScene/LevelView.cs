@@ -19,6 +19,7 @@ public sealed class LevelView : MonoBehaviour
     [SerializeField] private GameObject _requiredCountStars;
     [SerializeField] private TextMeshProUGUI _requiredCountStarsValue;
 
+    private bool _isPressed;
     private UserInfo _userInfo;
     private ThemeType _themeType;
     private PopupService _popupService;
@@ -52,8 +53,12 @@ public sealed class LevelView : MonoBehaviour
     [UsedImplicitly]
     public void OpenLevel()
     {
-        _popupService.ShowGamePopup(_levelSettings);
-        _popupService.HideCurrentPopup();
+        if (!_isPressed)
+        {
+            _popupService.ShowGamePopup(_levelSettings);
+            _popupService.HideCurrentPopup();
+            _isPressed = true;
+        }
     }
 
     private void FillUserProgress()
